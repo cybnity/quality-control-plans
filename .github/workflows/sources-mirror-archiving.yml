@@ -59,7 +59,7 @@ jobs:
           BITBUCKET_TOKEN: ${{ secrets.BITBUCKET_API_REPO_TOKEN }}
         run: |
           cd github-repo
-          git remote add quality-control-plans https://USERNAME:${{ secrets.BITBUCKET_API_REPO_TOKEN }}@bitbucket.org/agnet/quality-control-plans.git
+          git remote add quality-control-plans https://github_mirroring:${{ secrets.BITBUCKET_API_REPO_TOKEN }}@bitbucket.org/agnet/quality-control-plans.git
           git push --mirror quality-control-plans
 
       #- name: "Push contents of $CI_REPOSITORY_NAME project to Bitbucket repository"

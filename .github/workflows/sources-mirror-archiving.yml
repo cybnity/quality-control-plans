@@ -52,14 +52,14 @@ jobs:
       - name: Set Git Author Email for Bitbucket
         run: |
           cd github-repo
-          git config user.email "k7ityzq8ihv7qy1kecsh5agqtlwzp0@bots.bitbucket.org"
+          git config user.email "yxx81vpbd3tdt1c041k5noe22ckdf7@bots.bitbucket.org"
 
       - name: Push to Bitbucket Repository
         env:
           BITBUCKET_TOKEN: ${{ secrets.BITBUCKET_API_REPO_TOKEN }}
         run: |
           cd github-repo
-          git remote add quality-control-plans https://agnet:${{ secrets.BITBUCKET_API_REPO_TOKEN }}@bitbucket.org/agnet/quality-control-plans.git
+          git remote add quality-control-plans https://olivier_lemee:${{ secrets.BITBUCKET_API_REPO_TOKEN }}@bitbucket.org/agnet/quality-control-plans.git
           git push --mirror quality-control-plans
 
       #- name: "Push contents of $CI_REPOSITORY_NAME project to Bitbucket repository"

@@ -46,4 +46,4 @@ jobs:
             spacename: ${{ secrets.BITBUCKET_WORKSPACE_NAME }}
             repository: $CI_REPOSITORY_NAME
             password: ${{ secrets.BITBUCKET_API_REPO_TOKEN }}
-            #password: ${{ secrets.BITBUCKET_APP_PASSWORD }}
+            ##password: ${{ secrets.BITBUCKET_APP_PASSWORD }}

@@ -39,6 +39,13 @@ jobs:
           ref: ${{ inputs.branch_name }}
           fetch-depth: 0 # <-- clone with complete history
 
+      - name: Mirroring Repository
+        uses: pixta-dev/repository-mirroring-action@v1.1.1
+        with:
+            target_repo_url: https://api.bitbucket.org/2.0/$CI_REPOSITORY_NAME
+            ssh_private_key: ${{ secrets.BITBUCKET_API_REPO_TOKEN }}
+            ssh_username: k7ityzq8ihv7qy1kecsh5agqtlwzp0@bots.bitbucket.org
+
       - name: "Push contents of $CI_REPOSITORY_NAME project to Bitbucket repository"
         uses: heussd/mirror-to-bitbucket-github-action@v2
         with:

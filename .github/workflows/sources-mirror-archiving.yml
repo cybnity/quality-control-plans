@@ -40,33 +40,11 @@ jobs:
           fetch-depth: 0 # <-- clone with complete history
 
       # See https://github.com/asaphdanchi/Mirror-and-synchronizing/blob/main/mirror-github-to-bitbucket.md
-      - name: Set up Git
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-
-      - name: Clone current GitHub repository
-        run: |
-          git clone --mirror https://github.com/cybnity/quality-control-plans.git github-repo
-
-      - name: Set Git Author Email for Bitbucket
-        run: |
-          cd github-repo
-          git config user.email "yxx81vpbd3tdt1c041k5noe22ckdf7@bots.bitbucket.org"
-
-      - name: Push to Bitbucket Repository
-        env:
-          BITBUCKET_TOKEN: ${{ secrets.BITBUCKET_API_REPO_TOKEN }}
-        run: |
-          cd github-repo
-          git remote add quality-control-plans https://github_mirroring:${{ secrets.BITBUCKET_API_REPO_TOKEN }}@bitbucket.org/agnet/quality-control-plans.git
-          git push --mirror quality-control-plans
-
-      #- name: "Push contents of $CI_REPOSITORY_NAME project to Bitbucket repository"
-      #  uses: heussd/mirror-to-bitbucket-github-action@v2
-      #  with:
-      #      username: ${{ secrets.BITBUCKET_USERNAME }}
-      #      spacename: ${{ secrets.BITBUCKET_WORKSPACE_NAME }}
-      #      repository: $CI_REPOSITORY_NAME
-      #      password: ${{ secrets.BITBUCKET_API_REPO_TOKEN }}
-            ##password: ${{ secrets.BITBUCKET_APP_PASSWORD }}
+      - name: Push repository timestamped backup to AWS S3 bucket
+        uses: fredydlemus/s3-backup@v1
+        with:
+          target-bucket: 'amzn-s3-cybnity-github-mirror-bucket-974410204560-eu-west-3-an' # Bucket name where to store repository mirrored files (backup)
+          bucket-region: 'eu-west-3-an' # The WAS region where the S3 bucket is located
+          role-arn: 'arn:aws:iam::974410204560:role/github-repository-archiver' # The ARN of the IAM role to assume for S3 access
+          oidc-audience: 'sts.amazonaws.com' # The audience value for the OIDC token
+          backup-prefix: 'quality-control-plans-backup' # Prefix for the backup file name

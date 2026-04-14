@@ -1,6 +1,6 @@
 # Automated archiving of source codes repository to Bitbucket remote backup instance
 name: Test Plan Assets Archiving
-run-name: ARCHIVING - Source codes backup refresh
+run-name: ARCHIVING - Source codes backup update
 on:
   push:
     # execution when ...
@@ -20,10 +20,11 @@ on:
 # The archiging stage workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   mirror_repository_contents:
-    name: Backup repository contents to Bitbucket
+    name: Backup repository contents to AWS S3
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      id-token: write
 
     steps:
       - name: Read reusable environment variables about current test plans project

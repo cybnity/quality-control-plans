@@ -20,7 +20,7 @@ on:
 # The archiging stage workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   mirror_repository_contents:
-    name: Backup repository contents to AWS S3
+    name: Backup repository mirror to AWS S3
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -52,14 +52,15 @@ jobs:
       - name: Read caller identity connected over AWS Client
         run: |
           # AWS credentials read
-          aws sts get-caller-identity
+          aws sts get-caller-identity for $CI_REPOSITORY_SLUG backup
 
-      - name: Push repository timestamped backup to AWS S3 bucket
+      # See doc at https://github.com/fredydlemus/s3-backup
+      - name: Compress repository to backup file and store into AWS S3 bucket
         uses: fredydlemus/s3-backup@v1
         with:
-          target-bucket: 'amzn-s3-cybnity-github-mirror-bucket-974410204560-eu-west-3-an' # Bucket name where to store repository mirrored files (backup)
+          target-bucket: 'amzn-s3-cybnity-github-mirror-bucket-974410204560-eu-west-3-an/quality-control-plans/' # Bucket name where to store repository mirrored files (backup)
           bucket-region: 'eu-west-3' # The WAS region where the S3 bucket is located
           role-arn: 'arn:aws:iam::974410204560:role/github-repository-archiver' # The ARN of the IAM role to assume for S3 access
           oidc-audience: 'sts.eu-west-3.amazonaws.com' # The audience value for the OIDC token
-          backup-prefix: 'quality-control-plans-backup' # Prefix for the backup file name
+          backup-prefix: 'backup' # Prefix for the backup file name
 

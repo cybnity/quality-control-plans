@@ -51,8 +51,8 @@ jobs:
 
       - name: Read caller identity connected over AWS Client
         run: |
-          # AWS credentials read
-          aws sts get-caller-identity for $CI_REPOSITORY_SLUG backup
+          echo "AWS credentials read for $CI_REPOSITORY_SLUG backup"
+          aws sts get-caller-identity
 
       # See doc at https://github.com/fredydlemus/s3-backup
       - name: Compress repository to backup file and store into AWS S3 bucket

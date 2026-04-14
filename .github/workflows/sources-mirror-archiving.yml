@@ -62,3 +62,4 @@ jobs:
           role-arn: 'arn:aws:iam::974410204560:role/github-repository-archiver' # The ARN of the IAM role to assume for S3 access
           oidc-audience: 'sts.eu-west-3.amazonaws.com' # The audience value for the OIDC token
           backup-prefix: 'quality-control-plans-backup' # Prefix for the backup file name
+

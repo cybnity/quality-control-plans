@@ -40,7 +40,18 @@ jobs:
           ref: ${{ inputs.branch_name }}
           fetch-depth: 0 # <-- clone with complete history
 
-      # See https://github.com/asaphdanchi/Mirror-and-synchronizing/blob/main/mirror-github-to-bitbucket.md
+      # See https://github.com/aws-actions/configure-aws-credentials?tab=readme-ov-file#oidc-configuration-details
+      # Get access to AWS resources using an IAM Role
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6.1.0
+        with:
+          role-to-assume: 'arn:aws:iam::974410204560:role/github-repository-archiver'
+          aws-region: 'eu-west-3-an'
+      - name: Additional steps
+        run: |
+          # Your commands that require AWS credentials
+          aws sts get-caller-identity
+
       - name: Push repository timestamped backup to AWS S3 bucket
         uses: fredydlemus/s3-backup@v1
         with:

@@ -58,7 +58,7 @@ jobs:
       - name: Compress repository to backup file and store into AWS S3 bucket
         uses: fredydlemus/s3-backup@v1
         with:
-          target-bucket: 'amzn-s3-cybnity-github-mirror-bucket-974410204560-eu-west-3-an/${{ env.repo_name }}' # Bucket name where to store repository mirrored files (backup)
+          target-bucket: 'amzn-s3-cybnity-github-mirror-bucket-974410204560-eu-west-3-an/${{ env.repo_name }}' # Bucket name sub-folder (repo name based) where to store repository mirrored files (compressed backup as tar.gz file)
           bucket-region: 'eu-west-3' # The WAS region where the S3 bucket is located
           role-arn: 'arn:aws:iam::974410204560:role/github-repository-archiver' # The ARN of the IAM role to assume for S3 access
           oidc-audience: 'sts.eu-west-3.amazonaws.com' # The audience value for the OIDC token

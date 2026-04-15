@@ -54,14 +54,14 @@ jobs:
         run: |
           echo "AWS credentials and project variables read"
           echo "BRANCH_NAME=$CI_REF_NAME" >> $GITHUB_ENV
-          echo "REPO_NAME=$CI_REPOSITORY_NAME" >> $GITHUB_ENV
+          echo "REPO=$CI_REPOSITORY" >> $GITHUB_ENV
           aws sts get-caller-identity
 
       # See doc at https://github.com/fredydlemus/s3-backup
-      - name: Compress repository to backup file and store into AWS S3 bucket
+      - name: Compress repository and store backup file into AWS S3 dedicated bucket
         uses: fredydlemus/s3-backup@v1
         with:
-          target-bucket: '${{ secrets.AWS_S3_BACKUP_BUCKET }}/${{ env.REPO_NAME }}/${{ env.BRANCH_NAME }}' # Bucket name sub-folder (repo name based) where to store repository mirrored files (compressed backup as tar.gz file)
+          target-bucket: '${{ secrets.AWS_S3_BACKUP_BUCKET }}/${{ env.REPO }}/${{ env.BRANCH_NAME }}' # Bucket name sub-folder (repo name based) where to store repository mirrored files (compressed backup as tar.gz file)
           bucket-region: '${{ secrets.AWS_S3_BACKUP_BUCKET_REGION }}' # The WAS region where the S3 bucket is located
           role-arn: '${{ secrets.AWS_S3_ROLE_ARCHIVER }}' # The ARN of the IAM role to assume for S3 access
           oidc-audience: '${{ secrets.AWS_IDENTITY_PROVIDER_GITHUB_OIDC_AUDIENCE }}' # The audience value for the OIDC token

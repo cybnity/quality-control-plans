@@ -23,9 +23,11 @@ jobs:
     permissions:
       contents: read
       id-token: write
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
-      - name: Read reusable environment variables about current test plans project
+      - name: Read reusable environment variables
         uses: FranzDiebold/github-env-vars-action@v2
 
       - name: Checkout source codes from branch

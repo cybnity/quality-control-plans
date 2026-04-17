@@ -1,5 +1,5 @@
 # Automated archiving of source codes repository to Bitbucket remote backup instance
-name: Test Plan Assets Archiving
+name: Project Assets Archiving
 run-name: REPOSITORY ARCHIVING - Source codes backup
 on:
   push:
@@ -12,7 +12,6 @@ on:
   delete:
     # execution when ...
     branches:
-      - 'feature*'
       - 'main'
       - 'integration'
       - 'staging'
@@ -25,8 +24,6 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    env:
-      GITHUB_TOKEN: ${{ github.token }} # GITHUB_TOKEN is the default env for the password
 
     steps:
       - name: Read reusable environment variables about current test plans project
@@ -47,7 +44,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v6.1.0
         with:
           role-to-assume: '${{ secrets.AWS_S3_ROLE_ARCHIVER }}'
-          aws-region: '${{ secrets.AWS_S3_BACKUP_BUCKET_REGION }}' # ${{ secrets.AWS_S3_BUCKET_REGION }}
+          aws-region: '${{ secrets.AWS_S3_BACKUP_BUCKET_REGION }}'
           output-credentials: true # reference the fetched credentials as outputs that allow to use the aws-session-token input in a situation where session tokens are fetched and passed to this action
 
       - name: Read caller identity connected over AWS Client

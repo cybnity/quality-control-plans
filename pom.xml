@@ -1,0 +1,141 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.cybnity</groupId>
+		<artifactId>techstack</artifactId>
+		<version>0.46.0</version>
+	</parent>
+
+	<artifactId>quality-control-applications</artifactId>
+	<version>${revision}</version>
+	<packaging>pom</packaging>
+	<name>CYBNITY Quality Control Solutions</name>
+
+	<!-- Required informations for Maven Central Repository publishing -->
+	<description>Test plans organized by dimensions allowing to evaluate quality conformity and reporting of CYBNITY application components</description>
+	<url>http://github.com/cybnity/quality-control-plans</url>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<id>o.lemee</id>
+			<name>Olivier Lemee</name>
+			<email>olivier@cybnity.org</email>
+			<organization>AG Net</organization>
+			<organizationUrl>http://corp.agnet.fr</organizationUrl>
+			<timezone>FR</timezone>
+			<roles>
+				<role>Product Owner</role>
+				<role>Software Architect</role>
+				<role>Release Manager</role>
+			</roles>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:git://github.com/cybnity/quality-control-plans.git</connection>
+		<developerConnection>scm:git:https://github.com:cybnity/quality-control-plans.git</developerConnection>
+		<url>http://github.com/cybnity/quality-control-plans/tree/main</url>
+	</scm>
+
+	<properties>
+		<!-- CYBNITY TEST PLANS project default revision -->
+		<revision>1.0.0</revision>
+	</properties>
+
+	<!-- Project lines -->
+	<modules>
+		<module>implementation-line</module>
+	</modules>
+
+	<organization>
+		<name>CYBNITY</name>
+		<url>http://www.cybnity.org</url>
+	</organization>
+
+	<distributionManagement>
+		<!-- GitHub Packages development artifacts distribution
+	    	<snapshotRepository>
+	      		<id>github</id>
+	      		<name>CYBNITY Snapshot Packages</name>
+      			<uniqueVersion>true</uniqueVersion>
+	      		<url>https://maven.pkg.github.com/cybnity/quality-control-plans</url>
+	      	</snapshotRepository> -->
+
+		<!-- CYBNITY Open Source distributions -->
+		<snapshotRepository>
+			<id>agnet</id>
+			<name>AG Net snapshots repository</name>
+			<uniqueVersion>false</uniqueVersion>
+			<url>https://nexus.agnet.fr/repository/cybnity-snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>agnet</id>
+			<name>AG Net releases repository</name>
+			<uniqueVersion>true</uniqueVersion>
+			<url>https://nexus.agnet.fr/repository/cybnity-releases</url>
+		</repository>
+	</distributionManagement>
+
+	<repositories>
+		<repository>
+			<id>agnet-snapshots</id>
+			<!-- CYBNITY artifacts snapshot versions provided -->
+			<name>AG Net snapshots repository</name>
+			<url>https://nexus.agnet.fr/repository/cybnity-snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+
+		<repository>
+			<id>agnet-releases</id>
+			<!-- CYBNITY artifacts release versions provided -->
+			<name>AG Net releases repository</name>
+			<url>https://nexus.agnet.fr/repository/cybnity-releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+
+		<!--
+		<repository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/cybnity/quality-control-plans</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>-->
+	</repositories>
+
+	<!-- List of advice about project -->
+	<mailingLists>
+		<mailingList>
+			<name>${project.name} developers list</name>
+		</mailingList>
+		<mailingList>
+			<name>${project.name} testers list</name>
+		</mailingList>
+		<mailingList>
+			<name>${project.name} users list</name>
+		</mailingList>
+	</mailingLists>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/cybnity/quality-control-plans/issues/</url>
+	</issueManagement>
+</project>

@@ -194,7 +194,7 @@
 		</profile>
 
 		<profile>
-			<!-- Build phase regarding a test software version development -->
+			<!-- Test libraries build phase -->
 			<id>commit-stage</id>
 			<activation>
 				<property>

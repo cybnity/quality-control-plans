@@ -20,15 +20,15 @@ The source codes managed in the independent sub-projects (test components) are d
 
 The managed quality control dimensions are organized as:
 - [Functional acceptance dimension](functional-acceptance-dimension)
-- [Technical acceptance dimension](teschnical-acceptance-dimension)
+- [Technical acceptance dimension](technical-acceptance-dimension)
 
 ## Functional Control Quality
 Sub-projects allowing build of Java libraries ensuring definition and execution of test plan to validate criteria of evaluated CYBNITY Application parts relative to functional requirements.
 
 Each test component manages its source codes structure:
-- [UI Modules capabilities test plan component](ui-modules-capabilities-test-plan)
-- [Application Modules processes test plan component](application-modules-processes-test-plan)
-- [Feature Components test plan component](feature-components-test-plan)
+- [UI Modules capabilities test plan component](functional-acceptance-dimension/ui-modules-capabilities-test-plan)
+- [Application Modules processes test plan component](functional-acceptance-dimension/application-modules-processes-test-plan)
+- [Feature Components test plan component](functional-acceptance-dimension/feature-components-test-plan)
 
 ## Technical Control Quality
 Sub-projects allowing build of Java libraries ensuring definition and execution of test plan to validate criteria of evaluated CYBNITY Application parts relative to non-functional requirements.
@@ -37,19 +37,19 @@ The test sub-projects are grouped according to their type of technical concerns 
 
 Each test component manages its source codes structure.
 
-- [INTEGRATION ACCEPTANCE](integration-tests)
-  - [UI Layer integration test plan](integration-tests/ui-layer-integration-test-plan)
-  - [Application Layer integration test plan](integration-tests/application-layer-integration-test-plan)
-  - [Domain Layer integration test plan](integration-tests/domain-layer-integration-test-plan)
+- [INTEGRATION ACCEPTANCE](technical-acceptance-dimension/integration-tests)
+  - [UI Layer integration test plan](technical-acceptance-dimension/integration-tests/ui-layer-integration-test-plan)
+  - [Application Layer integration test plan](technical-acceptance-dimension/integration-tests/application-layer-integration-test-plan)
+  - [Domain Layer integration test plan](technical-acceptance-dimension/integration-tests/domain-layer-integration-test-plan)
 
-- [SECURITY ACCEPTANCE](security-tests)
-  - [Cybersecurity test plan](security-tests/cybersecurity-test-plan)
+- [SECURITY ACCEPTANCE](technical-acceptance-dimension/security-tests)
+  - [Cybersecurity test plan](technical-acceptance-dimension/security-tests/cybersecurity-test-plan)
 
-- [PERFORMANCE ACCEPTANCE](performance-tests)
-  - [Performance test plan](performance-tests/performance-test-plan)
+- [PERFORMANCE ACCEPTANCE](technical-acceptance-dimension/performance-tests)
+  - [Performance test plan](technical-acceptance-dimension/performance-tests/performance-test-plan)
 
-- [USABILITY ACCEPTANCE](usability-tests)
-  - [UI usability test plan](usability-tests/ui-usability-test-plan)
+- [USABILITY ACCEPTANCE](technical-acceptance-dimension/usability-tests)
+  - [UI usability test plan](technical-acceptance-dimension/usability-tests/ui-usability-test-plan)
   
 # RUNNABLE TEST CAMPAIGNS
 Several test modules are developed as libraries which can be deployed and executed in standalone approach (e.g integration test plan modules deployed and executed on Continuous Integration platform; smoke test application deployed and executed on Production environment).

@@ -98,12 +98,17 @@
             <artifactId>cucumber-junit-platform-engine</artifactId>
             <scope>compile</scope>
         </dependency>
-
-	    <!-- TESTNG tool for test runtime packaging (support of IDE execution, Maven driven execution, java standalone execution) -->
 		<dependency>
-			<!-- TestNG test plans management tool -->
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
+			<!-- Use TestNG to execute Cucumber scenarios -->
+			<!-- TESTNG tool for test runtime packaging (support of IDE execution, Maven driven execution, java standalone execution) -->
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<!-- LIbrary for use of rich AssertJ tool (rich set of assertions and truly helpful error messages, improves test code readability) in test plans. See https://assertj.github.io/doc/ for help -->
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
 			<scope>compile</scope>
 		</dependency>
 
@@ -113,7 +118,6 @@
 			<artifactId>cucumber-junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 
 	<reporting>

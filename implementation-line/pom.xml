@@ -93,25 +93,25 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <scope>compile</scope>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit-platform-engine</artifactId>
-            <scope>compile</scope>
+            <scope>test</scope>
         </dependency>
 		<dependency>
 			<!-- Use TestNG to execute Cucumber scenarios -->
 			<!-- TESTNG tool for test runtime packaging (support of IDE execution, Maven driven execution, java standalone execution) -->
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-testng</artifactId>
-			<scope>compile</scope>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<!-- LIbrary for use of rich AssertJ tool (rich set of assertions and truly helpful error messages, improves test code readability) in test plans. See https://assertj.github.io/doc/ for help -->
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
-			<scope>compile</scope>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- Dependencies usable for unit test phase of test plan utility projects under JUnit -->
@@ -122,37 +122,6 @@
 		</dependency>
 	</dependencies>
 
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<!-- Test Application JAR creation configuration -->
-					<!-- Help at https://codingtechroom.com/question/how-to-create-executable-jar-file-cucumber -->
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-assembly-plugin</artifactId>
-					<configuration>
-						<archive>
-							<manifest>
-								<mainClass>${testPlan-jar.mainClass}</mainClass>
-							</manifest>
-						</archive>
-						<descriptorRefs>
-							<descriptorRef>jar-with-dependencies</descriptorRef>
-						</descriptorRefs>
-					</configuration>
-					<executions>
-						<execution>
-							<id>make-assembly</id> <!-- for inheritance merges -->
-							<phase>package</phase> <!-- bind to the packaging phase -->
-							<goals>
-								<goal>single</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
 	<reporting>
 		<plugins>
 			<plugin>

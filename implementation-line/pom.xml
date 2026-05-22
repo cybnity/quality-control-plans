@@ -29,6 +29,8 @@
 		<!-- Docker platform supported for build of Docker images (e.g linux/amd64 on x86 CPU; or linux/arm64 on Mac M4 CPU) -->
 		<docker.platforms>linux/amd64,linux/arm64,linux/arm64v8</docker.platforms>
 
+		<!-- Test Plan project customization specific properties -->
+		<testPlan-jar.mainClass>TestPlan.MainClass</testPlan-jar.mainClass>
 	</properties>
 
 	<dependencyManagement>
@@ -120,6 +122,37 @@
 		</dependency>
 	</dependencies>
 
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<!-- Test Application JAR creation configuration -->
+					<!-- Help at https://codingtechroom.com/question/how-to-create-executable-jar-file-cucumber -->
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<configuration>
+						<archive>
+							<manifest>
+								<mainClass>${testPlan-jar.mainClass}</mainClass>
+							</manifest>
+						</archive>
+						<descriptorRefs>
+							<descriptorRef>jar-with-dependencies</descriptorRef>
+						</descriptorRefs>
+					</configuration>
+					<executions>
+						<execution>
+							<id>make-assembly</id> <!-- for inheritance merges -->
+							<phase>package</phase> <!-- bind to the packaging phase -->
+							<goals>
+								<goal>single</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 	<reporting>
 		<plugins>
 			<plugin>

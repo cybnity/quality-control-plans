@@ -112,7 +112,7 @@ flowchart TD
 </p>
 </details>
 
-## TEST PLANS
+## TEST PLAN TYPES
 The quality control of CYBNITY applications and features is structured for allow flexible execution according to many stage of a project, and the quality control plan structure is based on dissimenated scope via test plans.
 
 Each test plan is implemented as an executable Java application component (e.g. JUnit project, using a Maven Profile targeting the condition of execution to apply), defining a set of test scenario and cases to execute, and generating a results report.
@@ -175,21 +175,21 @@ flowchart LR
 ### Functional Dimension
 Quality control plans ensuring to verify that CYBNITY components have expected behavior and deliver services in conformity with functional requirements.
 
-|Quality Plan Project|Tested Perimeter|Quality Control Goal|Reference Requirements|
-|:----------------|:---------------|:-------------------|:---------------------|
-|UI Modules Capabilities Test Plan|CYBNITY deployable [cockpit-foundation components](https://github.com/cybnity/foundation/tree/main/implementations-line#cockpit-foundation-components)|Frontend user interface capabilities behavior|[Information system requirements](https://cybnity.notion.site/BAI02-01-Information-Systems-Functional-Requirements-7e1a0c857160495c9c4e7a6a072824af?source=copy_link)|
-|Application Modules Processes Test Plan|CYBNITY deployable [application components](https://github.com/cybnity/foundation/tree/main/implementations-line#application-components)|Applicative processes conformity per security domain| |
-|Feature Components Test Plan|CYBNITY common/shared/embedded features libraries behavior|Services component behavior expected per component category (e.g domain, OS, physical, transport, workflow) extending already existing any standalone unit test (managed in each software dedicated project) when test case require complementary 3rd-party system (e.g physical device, network equipment, 3rd-party system)| |
+|Quality Plan Project|Tested Perimeter|Quality Control Goal|Reference Requirements|Test Plan Application|
+|:----------------|:---------------|:-------------------|:---------------------|:---------------------|
+|UI Modules Capabilities Test Plan|CYBNITY deployable [cockpit-foundation components](https://github.com/cybnity/foundation/tree/main/implementations-line#cockpit-foundation-components)|Frontend user interface capabilities behavior|[Information system requirements](https://cybnity.notion.site/BAI02-01-Information-Systems-Functional-Requirements-7e1a0c857160495c9c4e7a6a072824af?source=copy_link)| | |
+|Application Modules Processes Test Plan|CYBNITY deployable [application components](https://github.com/cybnity/foundation/tree/main/implementations-line#application-components)|Applicative processes conformity per security domain| | |
+|Feature Components Test Plan|CYBNITY common/shared/embedded features libraries behavior|Services component behavior expected per component category (e.g domain, OS, physical, transport, workflow) extending already existing any standalone unit test (managed in each software dedicated project) when test case require complementary 3rd-party system (e.g physical device, network equipment, 3rd-party system)| | |
 
 ### Technical Dimension
 Quality control plans validating criteria relative to non-functional requirements that are expected from CYBNITY components.
 
 #### Integration Acceptance
-|Quality Plan Project|Tested Perimeter|Quality Control Goal|Reference Requirements|
-|:----------------|:---------------|:-------------------|:---------------------|
-|UI Layer Integration Test Plan|CYBNITY deployable UI Layer components|Technical integration conformity from UI Layer area with Application Layer and-or with external system (e.g. 3rd-party APIs or I/O external solutions) elements| |
-|Application Layer Integration Test Plan|CYBNITY deployable Application Layer components|Technical integration conformity from Application Layer elements with Domain Layer (e.g connectivity protocol, ontologies, deployment settings)| |
-|Domain Layer Integration Test Plan|CYBNITY deployable Domain Layer components|Technical integration conformity from Domain Layer elements with Infrastructure Layer (e.g persistence protocols, virtualized services, coupling with 3rd-party reused open source software| |
+|Quality Plan Project|Tested Perimeter|Quality Control Goal|Reference Requirements|Test Plan Application|
+|:----------------|:---------------|:-------------------|:---------------------|:---------------------|
+|UI Layer Integration Test Plan|CYBNITY deployable UI Layer components|Technical integration conformity from UI Layer area with Application Layer and-or with external system (e.g. 3rd-party APIs or I/O external solutions) elements| | |
+|Application Layer Integration Test Plan|CYBNITY deployable Application Layer components|Technical integration conformity from Application Layer elements with Domain Layer (e.g connectivity protocol, ontologies, deployment settings)| | |
+|Domain Layer Integration Test Plan|CYBNITY deployable Domain Layer components|Technical integration conformity from Domain Layer elements with Infrastructure Layer (e.g persistence protocols, virtualized services, coupling with 3rd-party reused open source software| | |
 
 #### Security Acceptance
 The tested abilities via the security quality control plan is focused on conformity of features that ensure that "CYBNITY Solution components work is executed in a safe context".
@@ -202,16 +202,16 @@ Several sub-domains of security category checks can be extended over dedicated t
 - Confidentiality: information managed is accessible only to those whose access is authorized
 - Traceability: level of information necessary and sufficient to know (and retrospectively) the composition of a material or component throughout its chain of production, its distribution and its usage
 
-|Quality Plan Project|Tested Perimeter|Quality Control Goal|Reference Requirements|
-|:----------------|:---------------|:-------------------|:---------------------|
-|Cybersecurity Test Plan|CYBNITY deployable Solution security controls|Behavior of security measures and features responding to security requirements expected from CYBNITY components| |
+|Quality Plan Project|Tested Perimeter|Quality Control Goal|Reference Requirements|Test Plan Application|
+|:----------------|:---------------|:-------------------|:---------------------|:---------------------|
+|Cybersecurity Test Plan|CYBNITY deployable Solution security controls|Behavior of security measures and features responding to security requirements expected from CYBNITY components| | |
 
 #### Performance Acceptance
 The feature performance is focused by this type of test plan, with quality check from end-user point of view. Each performance acceptance criteria defines that a feature or capability or system give satisfaction regarding a performance level during its execution, ensuring that the "work execution is done with efficiency".
 
-|Quality Plan Project|Tested Perimeter|Quality Control Goal|Reference Requirements|
-|:----------------|:---------------|:-------------------|:---------------------|
-|Performance Test Plan|CYBNITY deployable Solution|Performance checking in terms of capability to serve (scalability), with stable service level (robustness) in a expected duration (reactivity)| |
+|Quality Plan Project|Tested Perimeter|Quality Control Goal|Reference Requirements|Test Plan Application|
+|:----------------|:---------------|:-------------------|:---------------------|:---------------------|
+|Performance Test Plan|CYBNITY deployable Solution|Performance checking in terms of capability to serve (scalability), with stable service level (robustness) in a expected duration (reactivity)| | |
 
 #### Usability Acceptance
 A feature usability through a solution component (e.g. frontend user interface or extended interface like Chat, Vocal, AI Prompt) is targeted by this type of acceptance plan to validate the expected level of usage facility.
@@ -231,6 +231,11 @@ Several sub-domains of usability dimension checks can be extended over dedicated
 - Forgiving: that can save the user from costly mistakes (for example, if someone deletes an important piece of information, can he easily retrieve it or undo this action)
 - Readable: the interface is easy to read for the audience in the context of usage
 
-|Quality Plan Project|Tested Perimeter|Quality Control Goal|Reference Requirements|
-|:----------------|:---------------|:-------------------|:---------------------|
-|UI Usability Test Plan|CYBNITY deployable [cockpit-foundation UI components](https://github.com/cybnity/foundation/tree/main/implementations-line#cockpit-foundation-components)|Frontend web user interface usabiility criteria conformity| |
+|Quality Plan Project|Tested Perimeter|Quality Control Goal|Reference Requirements|Test Plan Application|
+|:----------------|:---------------|:-------------------|:---------------------|:---------------------|
+|UI Usability Test Plan|CYBNITY deployable [cockpit-foundation UI components](https://github.com/cybnity/foundation/tree/main/implementations-line#cockpit-foundation-components)|Frontend web user interface usabiility criteria conformity| | |
+
+# TEST PLANS IMPLEMENTATION PROJECTS
+This project is including several sub-projects hosting the test plans source codes and built test plans as standalone executable Java applications.
+
+The developed and maintained test applications are located into [implementation-line](implementation-line/README.md) documented folder.

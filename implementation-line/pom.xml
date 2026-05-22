@@ -100,7 +100,12 @@
         </dependency>
 
 	    <!-- TESTNG tool for test runtime packaging (support of IDE execution, Maven driven execution, java standalone execution) -->
-
+		<dependency>
+			<!-- TestNG test plans management tool -->
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<reporting>

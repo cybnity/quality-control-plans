@@ -8,8 +8,10 @@ Test feature specifications are delivered according to requirements and specific
 
 ### Sources Structure
 Test plan projects are structured and built according to standards:
-- Maven: Java test components using a [standard Maven project structure](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html)
-- Docker: system containers and images templates are managed by executable test project (e.g via auto-generated Dockerfile by Maven process)
+- [TestNG](https://testng.org/): testing framework reused by CYBNITY for management of test plans (e.g. facilities for grouping and prioritizing tests; enhanced reporting of Cucumber test executions reports)
+- [Cucumber](https://cucumber.io/): tool for design and running of automated acceptance tests, written in plan language (BDD support)
+- Maven: tool for Java test plan and components build accoding to a [standard Maven project structure](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html) to produce and deliver CYBNITY test applications
+- Docker: system containers and images templates are managed by executable test project(s) (e.g via auto-generated Dockerfile by Maven process)
 
 The test projects are supported by an Official TechStack version defining the authorized technologies used by any the test software sub-project.
 

@@ -106,6 +106,14 @@
 			<artifactId>testng</artifactId>
 			<scope>compile</scope>
 		</dependency>
+
+		<!-- Dependencies usable for unit test phase of test plan utility projects under JUnit -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<reporting>

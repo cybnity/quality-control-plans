@@ -1,6 +1,7 @@
 package org.cybnity.test.technical.accesscontrol.adapter.impl.keycloak;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 import org.cybnity.application.accesscontrol.adapter.impl.keycloak.SSOAdapterKeycloakImpl;
 import org.cybnity.framework.Context;
 import org.cybnity.framework.IContext;
@@ -9,10 +10,17 @@ import org.testng.annotations.*;
 
 import java.util.logging.Logger;
 
-
-//@CucumberOptions(plugin = "message:target/cucumber-report.ndjson")
-//@CucumberOptions(features="src/test/resources/features",glue="stepDefinitions",tags="@Test01",plugin= {"pretty", "html:target/cucumber-reports" },monochrome=true)
-public class AccessControlTest extends AbstractTestNGCucumberTests {
+/**
+ * This class executes all scenarios of the same package as the runner.
+ * By default, glue code is also assumed to be in the same package.
+ */
+// See "Using plugins" chapter of https://cucumber.io/docs/cucumber/api/#using-plugins about available options configuration
+@CucumberOptions(
+        plugin = {"message:target/cucumber-report.ndjson",
+                "html:target/cucumber-reports", "pretty" /* 2 formatter plugins to use */},
+        monochrome=true /* Console output from Cucumber in readable format*/
+)
+public class AccessControlTests extends AbstractTestNGCucumberTests {
 
     private IContext context;
     private Logger logger;
@@ -24,13 +32,13 @@ public class AccessControlTest extends AbstractTestNGCucumberTests {
         this.context = new Context();
         this.logger = Logger.getLogger(this.getClass().getName());
         this.adapter = new SSOAdapterKeycloakImpl(this.context);
-        System.out.println("AccessControlTestSuite beforeTest");
+        System.out.println("AccessControlTests beforeTest");
     }
 
     @AfterTest
     public void afterTest() {
         // Data cleaning after this test have been executed
-        System.out.println("AccessControlTestSuite afterTest");
+        System.out.println("AccessControlTests afterTest");
     }
 
     /**
@@ -38,7 +46,7 @@ public class AccessControlTest extends AbstractTestNGCucumberTests {
      */
     @Test
     public void checkHealthyState() throws UnoperationalStateException {
-        System.out.println("AccessControlTestSuite checkHealthyState test executed");
+        System.out.println("AccessControlTests checkHealthyState test executed");
         adapter.checkHealthyState();
     }
 }

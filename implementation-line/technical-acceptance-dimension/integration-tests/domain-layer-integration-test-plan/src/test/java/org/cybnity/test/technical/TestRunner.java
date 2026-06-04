@@ -1,6 +1,6 @@
 package org.cybnity.test.technical;
 
-import org.cybnity.test.technical.accesscontrol.adapter.impl.keycloak.AccessControlTest;
+import org.cybnity.test.technical.accesscontrol.adapter.impl.keycloak.AccessControlTests;
 import org.testng.TestNG;
 
 /**
@@ -9,7 +9,7 @@ import org.testng.TestNG;
 public class TestRunner {
     public static void main(String[] args) {
         TestNG runner = new TestNG();
-        runner.setTestClasses(new Class[]{AccessControlTest.class});
+        runner.setTestClasses(new Class[]{AccessControlTests.class});
         runner.run();
     }
 }

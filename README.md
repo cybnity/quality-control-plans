@@ -189,7 +189,7 @@ Quality control plans validating criteria relative to non-functional requirement
 |:----------------|:---------------|:-------------------|:---------------------|:---------------------|
 |UI Layer Integration Test Plan|CYBNITY deployable UI Layer components|Technical integration conformity from UI Layer area with Application Layer and-or with external system (e.g. 3rd-party APIs or I/O external solutions) elements| | |
 |Application Layer Integration Test Plan|CYBNITY deployable Application Layer components|Technical integration conformity from Application Layer elements with Domain Layer (e.g connectivity protocol, ontologies, deployment settings)| | |
-|Domain Layer Integration Test Plan|CYBNITY deployable Domain Layer components|Technical integration conformity from Domain Layer elements with Infrastructure Layer (e.g persistence protocols, virtualized services, coupling with 3rd-party reused open source software| | |
+|Domain Layer Integration Test Plan|CYBNITY deployable Domain Layer components|Technical integration conformity from Domain Layer elements with Infrastructure Layer (e.g persistence protocols, virtualized services, coupling with 3rd-party reused open source software)| | |
 
 #### Security Acceptance
 The tested abilities via the security quality control plan is focused on conformity of features that ensure that "CYBNITY Solution components work is executed in a safe context".

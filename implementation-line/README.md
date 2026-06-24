@@ -15,6 +15,12 @@ Test plan projects are structured and built according to standards:
 
 The test projects are supported by an Official TechStack version defining the authorized technologies used by any the test software sub-project.
 
+### Utility sub-projects
+Complementary Maven sub-projects are managed as common libraries reusable by the test plan projects.
+
+Those artifacts are dedicated to host common utility components (e.g; helpers like factories, builders, common configuration elements):
+- [commons](commons) including utility implementation components that can be reused commonly by any test plan component
+
 # QUALITY CONTROL DIMENSIONS & TEST COMPONENTS
 The sub-projects managed in this area are about the test components ensuring quality control.
 

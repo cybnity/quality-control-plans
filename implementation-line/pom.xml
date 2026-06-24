@@ -14,6 +14,8 @@
 	<name>QUALITY CONTROL DIMENSION SYSTEMS</name>
 
 	<modules>
+		<!-- Shared utility libraries -->
+		<module>commons</module>
 		<!-- Implementation test component types -->
 		<module>functional-acceptance-dimension</module>
 		<module>technical-acceptance-dimension</module>
@@ -30,11 +32,17 @@
 		<docker.platforms>linux/amd64,linux/arm64,linux/arm64v8</docker.platforms>
 
 		<!-- Test Plan project customization specific properties -->
-		<testPlan-jar.mainClass>TestPlan.MainClass</testPlan-jar.mainClass>
+		<testPlan-jar.mainClass>org.testng.TestNG</testPlan-jar.mainClass>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.cybnity.test</groupId>
+				<artifactId>commons</artifactId>
+				<version>${revision}</version>
+				<scope>compile</scope>
+			</dependency>
 			<dependency>
 				<groupId>org.cybnity.framework</groupId>
 				<artifactId>support</artifactId>
@@ -76,6 +84,11 @@
 				<version>${cybnity.software.revision}</version>
 			</dependency>
 			<dependency>
+				<groupId>org.cybnity.application.access-control.adapters</groupId>
+				<artifactId>keycloak-admin-impl</artifactId>
+				<version>${cybnity.software.revision}</version>
+			</dependency>
+			<dependency>
 				<groupId>org.cybnity.features.technical.persistence</groupId>
 				<artifactId>redis-store</artifactId>
 				<version>${cybnity.software.revision}</version>
@@ -94,25 +107,33 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit-platform-engine</artifactId>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
 		<dependency>
 			<!-- Use TestNG to execute Cucumber scenarios -->
 			<!-- TESTNG tool for test runtime packaging (support of IDE execution, Maven driven execution, java standalone execution) -->
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-testng</artifactId>
-			<scope>test</scope>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<!-- LIbrary for use of rich AssertJ tool (rich set of assertions and truly helpful error messages, improves test code readability) in test plans. See https://assertj.github.io/doc/ for help -->
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
-			<scope>test</scope>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<!-- Test code which depends on methods in java.lang.System (e.g; environment variables)
+			It's a plugin/listener for the TestNG framework, which automatically injects System Stubs into TestNG tests
+			-->
+			<groupId>uk.org.webcompere</groupId>
+			<artifactId>system-stubs-testng</artifactId>
+			<scope>compile</scope>
 		</dependency>
 		<!--
 		<dependency>
@@ -133,6 +154,23 @@
             <scope>test</scope>
         </dependency>
 	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<configuration>
+						<!-- Disable missing Javadoc warnings on Cucumber test classes for cause of BDD scenario descriptions are already formal and unambiguous -->
+						<doclint>none</doclint>
+						<failOnWarnings>false</failOnWarnings>
+						<quiet>true</quiet>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 	<reporting>
 		<plugins>

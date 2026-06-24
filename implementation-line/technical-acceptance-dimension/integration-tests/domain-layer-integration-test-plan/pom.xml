@@ -10,18 +10,17 @@
 	<packaging>jar</packaging>
 	<name>--- Domain layer tests</name>
 	<properties>
-		<!-- Test Plan project customization specific properties -->
-		<testPlan-jar.mainClass>org.testng.TestNG</testPlan-jar.mainClass>
+		<!-- Test Plan project customization specific properties
+		<testPlan-jar.mainClass>org.testng.TestNG</testPlan-jar.mainClass>-->
 		<!-- dataproviderthreadcount is the default number of threads to use for data providers when running tests in parallel -->
-		<surefire.dataprovider.threadcount>2</surefire.dataprovider.threadcount>
+		<surefire.dataprovider.threadcount>1</surefire.dataprovider.threadcount>
 	</properties>
 	<dependencies>
 		<!-- INTEGRATION WITH INFRASTRUCTURE LAYER ELEMENTS -->
 		<!-- Tested integration from implementation components -->
 		<dependency>
-			<groupId>org.cybnity.application.access-control.adapters</groupId>
-			<artifactId>keycloak-admin-impl</artifactId>
-			<version>${cybnity.software.revision}</version>
+			<groupId>org.cybnity.test</groupId>
+			<artifactId>commons</artifactId>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>

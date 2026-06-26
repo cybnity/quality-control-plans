@@ -89,11 +89,21 @@ One profile per supported quality verification phase is defined into the [pom.xm
 
 ## How to active a quality control Plan
 According to the environment available and-or the type of quality control expected to be executed by a CYBNITY software maintainer (e.g; component Developer during coding activities; system version Deployer during system delivery configuration activities), the Maven profiles activation are enabled according to:
-- to activate an execution environment profile: add an option to the __mvn__ command line executed by the maintainer
+
+- For activate an execution environment profile: add an option to the __mvn__ command line executed by the maintainer
   - For example: to activate the __dev-deploy-environment__ profile (execute test plans into a context with existing shared K8S cluster or external systems accessible from the current workstation), add the option __-Denvironment=dev-deploy__ to the mvn command line.
 
-- to activate a quality stage profile: define an environment variable onto the workstation where the test plan execution is launched
-  - For example: to activate the __integration-quality-stage__ profile (execute the test plans dedicated to control technical integration of CYBNITY software components and-or systems between them), set the environment vairable __STAGE__ with the value __int-qa__ (e.g; via __export STAGE=int-qa__ command line) onto the workstation BEFORE TO LAUNCH the test plans execution.
+- For activate a quality stage profile: define an environment variable onto the workstation where the test plan execution is launched
+  - For example: to activate the __integration-quality-stage__ profile (execute the test plans dedicated to control technical integration of CYBNITY software components and-or systems between them), set the environment variable __STAGE__ with the value __int-qa__ onto the workstation <ins>BEFORE TO LAUNCH the test plans execution</ins>:
+  ```console
+    export STAGE=int-qa
+  ```
+ 
+## How to check the current active Maven profiles
+Execution the command line to show the current enabled profiles (e.g; environment and quality stage enabled profiles):
+```console
+  mvn help:active-profiles
+```
 
 # DEPLOYABLE TEST SYSTEMS
 Several types of test systems are developed and containerized as executable test systems which can be deployed and operated according to the deployment model required by an execution context.

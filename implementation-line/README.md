@@ -88,12 +88,17 @@ One profile per supported quality verification phase is defined into the [pom.xm
 - __performance-quality-stage__ profile (step of CYBNITY software solution performance evaluation and non-regression control)
 
 ## How to active a quality control Plan
+All supported profiles are documented into the [pom.xml](pom.xml) file of the implementation-line.
+
 According to the environment available and-or the type of quality control expected to be executed by a CYBNITY software maintainer (e.g; component Developer during coding activities; system version Deployer during system delivery configuration activities), the Maven profiles activation are enabled according to:
 
-- For activate an execution environment profile: add an option to the __mvn__ command line executed by the maintainer
-  - For example: to activate the __dev-deploy-environment__ profile (execute test plans into a context with existing shared K8S cluster or external systems accessible from the current workstation), add the option __-Denvironment=dev-deploy__ to the mvn command line.
+- For activate an execution environment profile: define an environment variable onto the workstation where the test plan execution is launched.
+  - For example: to activate the __dev-deploy-environment__ profile (execute test plans into a context with existing shared K8S cluster or external systems accessible from the current workstation), set the environment variable __TEST_ENV__ with the value __dev-deploy__ onto the workstation <ins>BEFORE TO LAUNCH the test plans execution</ins>:
+  ```console
+    export TEST_ENV=dev-deploy
+  ```
 
-- For activate a quality stage profile: define an environment variable onto the workstation where the test plan execution is launched
+- For activate a quality stage profile: define an environment variable onto the workstation where the test plan execution is launched.
   - For example: to activate the __integration-quality-stage__ profile (execute the test plans dedicated to control technical integration of CYBNITY software components and-or systems between them), set the environment variable __STAGE__ with the value __int-qa__ onto the workstation <ins>BEFORE TO LAUNCH the test plans execution</ins>:
   ```console
     export STAGE=int-qa

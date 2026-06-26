@@ -103,7 +103,8 @@ According to the environment available and-or the type of quality control expect
   ```console
     export STAGE=int-qa
   ```
- 
+See Maven documentation about [explicit profile activation](https://maven.apache.org/guides/introduction/introduction-to-profiles.html#explicit-profile-activation) to identify other solutions allowing to activate profiles from the __settings.xml__ file on the workstation executing the test plans.
+
 ## How to check the current active Maven profiles
 Execution the command line to show the current enabled profiles (e.g; environment and quality stage enabled profiles):
 ```console

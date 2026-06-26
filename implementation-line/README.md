@@ -83,8 +83,8 @@ One profile per supported environment is defined into the [pom.xml](pom.xml) fil
 
 - __technical-quality-stage__ profile (phase of technical quality validation of a CYBNITY software version)
 - __integration-quality-stage__ profile (phase of integration quality control of a CYBNITY software components versions) 
-- __user-acceptance-test-stage__ profile (step of CYBNITY software solution behavior validation by testers community)
-- __performance-acceptance-test-stage__ profile (step of CYBNITY software solution performance evaluation and non-regression control)
+- __functional-quality-stage__ profile (step of CYBNITY software solution behavior validation by testers community)
+- __performance-quality-stage__ profile (step of CYBNITY software solution performance evaluation and non-regression control)
 
 # DEPLOYABLE TEST SYSTEMS
 Several types of test systems are developed and containerized as executable test systems which can be deployed and operated according to the deployment model required by an execution context.

@@ -80,6 +80,7 @@ One profile per supported environment is defined into the [pom.xml](pom.xml) fil
 - __perf-environment__ profile
 
 ## Maven Profiles per Quality Control Goal
+One profile per supported quality verification phase is defined into the [pom.xml](pom.xml) file of the implementation-line:
 
 - __technical-quality-stage__ profile (phase of technical quality validation of a CYBNITY software version)
 - __integration-quality-stage__ profile (phase of integration quality control of a CYBNITY software components versions) 

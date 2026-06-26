@@ -18,3 +18,4 @@ buildNumber.properties
 /implementation-line/technical-acceptance-dimension/integration-tests/domain-layer-integration-test-plan/test-output
 /implementation-line/technical-acceptance-dimension/integration-tests/domain-layer-integration-test-plan/.idea
 **/.idea
+**/mpp-official-version-pom-tree.txt

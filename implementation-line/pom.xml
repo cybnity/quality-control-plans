@@ -192,53 +192,66 @@
 
 	<profiles>
 		<profile>
-			<!-- Developer workstation environment -->
-			<id>localhost</id>
+			<!-- Unique workstation on test plans execution -->
+			<!-- ONLY TESTS THAT DOES NOT REQUIRE ANY EXTERNAL SYSTEM (e.g; none server component need) CAN BE PERFORMED UNDER THIS PROFILE -->
+			<id>standalone</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<!-- Activation based on defined UPPERCASE environment variable (e.g; TEST_ENV=standalone) -->
+					<name>env.TEST_ENV</name>
+					<value>standalone</value>
+				</property>
 			</activation>
 			<properties>
 				<!-- Configuration elements relative to specificity of the environment targeted by the test execution (EXECUTION CONTEXT) -->
+
 			</properties>
 		</profile>
 
 		<profile>
-			<!-- Shared development platform between developers -->
+			<!-- Shared development server between developers -->
+			<!-- TESTS THAT REQUIRE OR NOT REQUIRE EXTERNAL SYSTEMS (e.g; Kubernetes server with deployed component running) CAN BE PERFORMED UNDER THIS PROFILE -->
 			<id>dev-deploy-environment</id>
 			<activation>
+				<activeByDefault>false</activeByDefault>
 				<property>
-					<!-- Activation based on -D system property (e.g command line with -Denvironment=dev-deploy) -->
-					<name>environment</name>
+					<!-- Activation based on defined UPPERCASE environment variable (e.g; TEST_ENV=dev-deploy) -->
+					<name>env.TEST_ENV</name>
 					<value>dev-deploy</value>
 				</property>
 			</activation>
 			<properties>
 				<!-- Configuration elements relative to specificity of the environment targeted by the test execution (EXECUTION CONTEXT) -->
+
 			</properties>
 		</profile>
 
 		<profile>
-			<!-- Test environment -->
+			<!-- Quality control server dedicated to test activities by CI/CD stage -->
 			<id>qa-environment</id>
 			<activation>
+				<activeByDefault>false</activeByDefault>
 				<property>
-					<!-- Activation based on -D system property (e.g command line with -Denvironment=qa) -->
-					<name>environment</name>
+					<!-- Activation based on defined UPPERCASE environment variable (e.g; TEST_ENV=qa) -->
+					<name>env.TEST_ENV</name>
 					<value>qa</value>
 				</property>
 			</activation>
 			<properties>
 				<!-- Configuration elements relative to specificity of the environment targeted by the test execution (EXECUTION CONTEXT) -->
+
 			</properties>
 		</profile>
 
 		<profile>
-			<!-- UAT environment -->
+			<!-- Dedicated server context reserved for end-user manual test execution -->
 			<id>uat-environment</id>
 			<activation>
+				<activeByDefault>false</activeByDefault>
 				<property>
-					<!-- Activation based on -D system property (e.g command line with -Denvironment=uat) -->
-					<name>environment</name>
+					<!-- Activation based on defined UPPERCASE environment variable (e.g; TEST_ENV=uat) -->
+					<name>env.TEST_ENV</name>
 					<value>uat</value>
 				</property>
 			</activation>
@@ -248,12 +261,13 @@
 		</profile>
 
 		<profile>
-			<!-- PERFORMANCE environment -->
+			<!-- Dedicated servers for performance verification tests execution -->
 			<id>perf-environment</id>
 			<activation>
+				<activeByDefault>false</activeByDefault>
 				<property>
-					<!-- Activation based on -D system property (e.g command line with -Denvironment=perf) -->
-					<name>environment</name>
+					<!-- Activation based on defined UPPERCASE environment variable (e.g; TEST_ENV=perf) -->
+					<name>env.TEST_ENV</name>
 					<value>perf</value>
 				</property>
 			</activation>
@@ -263,12 +277,13 @@
 		</profile>
 
 		<profile>
-			<!-- Test libraries build phase -->
+			<!-- Test plans build phase (optionally including specific unit test relative to test data) -->
 			<id>commit-stage</id>
 			<activation>
+				<activeByDefault>true</activeByDefault>
 				<property>
-					<!-- Activation based on -D system property (e.g command line with -Dstage=commit) -->
-					<name>stage</name>
+					<!-- Activation based on defined UPPERCASE environment variable (e.g; STAGE=commit) -->
+					<name>env.STAGE</name>
 					<value>commit</value>
 				</property>
 			</activation>
@@ -295,14 +310,21 @@
 			<!-- Phase of technical quality validation of a software version -->
 			<id>technical-quality-stage</id>
 			<activation>
+				<activeByDefault>false</activeByDefault>
 				<property>
-					<!-- Activation based on -D system property (e.g command line with -Dstage=technical-quality) -->
-					<name>stage</name>
-					<value>technical-quality</value>
+					<!-- Activation based on defined UPPERCASE environment variable (e.g; STAGE=tech-qa) -->
+					<name>env.STAGE</name>
+					<value>tech-qa</value>
 				</property>
 			</activation>
 			<properties>
 				<!-- Configuration elements relative to specificity of the stage (TEST GOAL) -->
+
+				<!-- Performed CUCUMBER TEST THAT ARE TAGGED:  @technicalTest -->
+				<!-- Including test plans:
+						- Cybersecurity test plan
+						- UI usability test plan
+				-->
 			</properties>
 			<build>
 				<plugins>
@@ -367,13 +389,20 @@
 			<id>integration-quality-stage</id>
 			<activation>
 				<property>
-					<!-- Activation based on -D system property (e.g command line with -Dstage=integration-quality) -->
-					<name>stage</name>
-					<value>integration-quality</value>
+					<!-- Activation based on defined UPPERCASE environment variable (e.g; STAGE=int-qa) -->
+					<name>env.STAGE</name>
+					<value>int-qa</value>
 				</property>
 			</activation>
 			<properties>
 				<!-- Configuration elements relative to specificity of the stage (TEST GOAL) -->
+
+				<!-- Performed CUCUMBER TEST THAT ARE TAGGED: @integrationTest -->
+				<!-- Including test plans:
+						- Domain Layer integration test plan
+						- Application Layer integration test plan
+						- UI Layer integration test plan
+				-->
 			</properties>
 			<build>
 				<plugins>
@@ -396,16 +425,23 @@
 
 		<profile>
 			<!-- Step of software behavior validation by testers community (e.g regarding a software beta release) -->
-			<id>user-acceptance-test-stage</id>
+			<id>functional-quality-stage</id>
 			<activation>
 				<property>
-					<!-- Activation based on -D system property (e.g command line with -Dstage=user-acceptance-test) -->
-					<name>stage</name>
-					<value>user-acceptance-test</value>
+					<!-- Activation based on defined UPPERCASE environment variable (e.g; STAGE=func-qa) -->
+					<name>env.STAGE</name>
+					<value>func-qa</value>
 				</property>
 			</activation>
 			<properties>
 				<!-- Configuration elements relative to specificity of the stage (TEST GOAL) -->
+
+				<!-- Performed CUCUMBER TEST THAT ARE TAGGED:  @successTest @exceptionTest @functionalTest -->
+				<!-- Including test plans:
+						- UI Modules capabilities test plan
+						- Application Modules processes test plan
+						- Feature Components test plan
+				-->
 			</properties>
 			<build>
 				<plugins>
@@ -429,16 +465,21 @@
 
 		<profile>
 			<!-- Step of software capacity, robustness, efficiency and scalability validation (e.g regarding a software beta release) -->
-			<id>performance-acceptance-test-stage</id>
+			<id>performance-quality-stage</id>
 			<activation>
 				<property>
-					<!-- Activation based on -D system property (e.g command line with -Dstage=perf-acceptance-test) -->
-					<name>stage</name>
-					<value>perf-acceptance-test</value>
+					<!-- Activation based on defined UPPERCASE environment variable (e.g; STAGE=perf-qa) -->
+					<name>env.STAGE</name>
+					<value>perf-qa</value>
 				</property>
 			</activation>
 			<properties>
 				<!-- Configuration elements relative to specificity of the stage (TEST GOAL) -->
+
+				<!-- Performed CUCUMBER TEST THAT ARE TAGGED:  @performanceTest -->
+				<!-- Including test plans:
+						- Performance test plan
+				-->
 			</properties>
 			<build>
 				<plugins>

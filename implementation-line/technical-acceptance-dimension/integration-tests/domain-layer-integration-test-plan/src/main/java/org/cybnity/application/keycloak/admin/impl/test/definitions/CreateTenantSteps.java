@@ -1,7 +1,7 @@
 package org.cybnity.application.keycloak.admin.impl.test.definitions;
 
-import io.cucumber.java.AfterStep;
-import io.cucumber.java.BeforeStep;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -40,7 +40,7 @@ public class CreateTenantSteps extends ContextualizedTest {
         super(TenantCreationCase.ENV_PROPERTY_FILEPATH);
     }
 
-    @BeforeStep
+    @Before
     public void setup() throws UnoperationalStateException, Exception {
         // Define environment variables required by this test execution (e.g; keycloak admin adapter) from properties file
         this.setupEnvironmentVariables(TenantCreationCase.ENV_PROPERTY_FILEPATH); // Context is loaded with environment variables
@@ -51,7 +51,7 @@ public class CreateTenantSteps extends ContextualizedTest {
         });
     }
 
-    @AfterStep
+    @After
     public void cleanup() {
         // Data cleaning after this test execution have been finished
 

@@ -31,6 +31,8 @@ public class CreateTenantSteps extends ContextualizedTest {
      */
     private List<String> testTenantsCache = new ArrayList<>();
 
+    TenantDTO successTestData_createdTenant;
+
     /**
      * Default constructor required by Cucumber.
      *
@@ -57,67 +59,66 @@ public class CreateTenantSteps extends ContextualizedTest {
 
         // Delete all test data about tenant names
         for (String testTenant : testTenantsCache) {
-            this.adapter.deleteTenant(testTenant, true /* Force deletion and any test sub-data*/);
+            try {
+                this.adapter.deleteTenant(testTenant, true /* Force deletion and any test sub-data*/);
+            } catch (Exception e) {
+                logger.warn("Failed to delete tenant " + testTenant);
+            }
         }
         testTenantsCache.clear(); // Delete all cached scenario data
         logger().info("CreateTenantSteps cleanup executed successfully");
     }
 
     @Given("none tenant named {string} is existing into Keycloak SSO system")
-    public void noneTenantNamedIsExistingIntoKeycloakSSOSystem(String tenantName) {
+    public void noneTenantNamedIsExistingIntoKeycloakSSOSystem(String tenantName) throws OperationException {
         this.adapter.deleteTenant(tenantName, true);
     }
 
     @When("the user request creation of a tenant named as {string}")
     public void theUserRequestCreationOfATenantNamedAs(String tenantName) throws OperationException {
-        // Create a Realm into Keycloak, automatically translated into TenantDTO by API adapter
-        TenantDTO successTestData_createdTenant = this.adapter.createTenant(tenantName);
-        Assert.assertNotNull(successTestData_createdTenant);
-        String keycloakFormattedLabel = successTestData_createdTenant.getLabel();
         // Feed test data cache
-        testTenantsCache.add(keycloakFormattedLabel);
-
-        // Check that status of tenant is technically known and respect mandatory expected integrity as Keycloak Admin API output
-        Assert.assertFalse(keycloakFormattedLabel.contains(" "), "shall not contain blank character to be usable over URL!"); // Potential unusability for future call over Keycloak REST API
-        Assert.assertNotNull(successTestData_createdTenant.occurredAt(), "shall include traceability and auditable date of committed transaction with Keycloak!");
-        Assert.assertNotNull(successTestData_createdTenant.getCurrentStatus(), "shall be known from Keycloak!");
+        testTenantsCache.add(tenantName);
+        // Create a Realm into Keycloak, automatically translated into TenantDTO by API adapter
+        successTestData_createdTenant = this.adapter.createTenant(tenantName);
     }
 
     @Then("keycloak SSO system confirm the tenant success creation via sent {string}")
     public void keycloakSSOSystemConfirmTheTenantSuccessCreationViaSent(String eventType) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assert.assertNotNull(successTestData_createdTenant);
+        // TODO Write code here that turns the phrase above into concrete actions about listened admin events
     }
 
     @And("a realm element is registered and managed into Keycloak SSO system")
     public void a_realm_element_is_registered_and_managed_into_keycloak_sso_system() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assert.assertNotNull(successTestData_createdTenant.getCurrentStatus(), "shall be known from Keycloak!");
+        // TODO write additional code that search the tenant with same label into Keycloak
+        String labelToCheckIntoKeycloak = successTestData_createdTenant.getLabel();
+
     }
 
     @And("the tenant technical identification data are received from Keycloak into {string}")
     public void theTenantTechnicalIdentificationDataAreReceivedFromKeycloakInto(String tenantIdentificationDataType) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assert.assertNotNull(successTestData_createdTenant.occurredAt(), "shall include traceability and auditable date of committed transaction with Keycloak!");
+        // TODO Check that any technical data required as configuration from CYBNITY side have been loaded into the DTO for future storage by Access Control domain
     }
 
     @And("the created tenant label does not include any blank character")
     public void theCreatedTenantLabelDoesNotIncludeAnyBlankCharacter() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        String keycloakFormattedLabel = successTestData_createdTenant.getLabel();
+        Assert.assertFalse(keycloakFormattedLabel.contains(" "), "shall not contain blank character to be usable over URL!"); // Potential unusability for future call over Keycloak REST API
     }
 
     @And("keycloak SSO system notify all systems that a tenant named {string} is existing via sent {string}")
     public void keycloakSSOSystemNotifyAllSystemsThatATenantNamedIsExistingViaSent(String tenantName, String newTenantCreatedEvent) {
-        // Write code here that turns the phrase above into concrete actions
+        // TODO Write code here that turns the phrase above into concrete actions regarding admin event listened/received about new created realm
         throw new io.cucumber.java.PendingException();
     }
 
     @Given("a tenant already exist in Keycloak SSO system that is named {string}")
     public void aTenantAlreadyExistInKeycloakSsoSystemThatIsNamed(String existingTenantName) throws OperationException {
+        testTenantsCache.add(existingTenantName); // Feed test data cache
         // Add test tenant data as existing initial state into Keycloak
         this.adapter.createTenant(existingTenantName);
-        testTenantsCache.add(existingTenantName); // Feed test data cache
     }
 
     @When("the user request creation of a tenant with name equals to {string}")
@@ -127,19 +128,22 @@ public class CreateTenantSteps extends ContextualizedTest {
             this.adapter.createTenant(tenantName);
             assert false; // Invalid performed operation that should have been rejected for cause of duplicate realm (with same name already existing)
         } catch (OperationException op) {
+            invalidTenantLabelCreationAttemptResult = true;
             assert true; // Normal rejected operation for cause of existing same tenant named in Keycloak
         }
     }
 
+    private boolean invalidTenantLabelCreationAttemptResult = false;
+
     @Then("keycloak SSO system reject the creation demand via sent {string}")
     public void keycloak_sso_system_reject_the_creation_demand_via_sent(String tenantCreationRejectedEventType) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assert.assertTrue(invalidTenantLabelCreationAttemptResult,"Creation shall have been refused for cause of invalid label!");
+        // TODO Add check of listener admin event and received cause of rejection from event occurred
     }
 
     @Then("the cause of rejection is responded by Keycloak via {string} \\(as audit log)")
     public void the_cause_of_rejection_is_responded_by_keycloak_via_as_audit_log(String tenantCreationRejectCauseType) {
-        // Write code here that turns the phrase above into concrete actions
+        // TODO Write code here that turns the phrase above into concrete actions regarding evaluation of the cause type received from admin event (invalid label)
         throw new io.cucumber.java.PendingException();
     }
 }

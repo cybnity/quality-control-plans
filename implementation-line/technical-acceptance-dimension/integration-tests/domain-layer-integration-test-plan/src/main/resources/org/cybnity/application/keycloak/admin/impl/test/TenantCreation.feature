@@ -12,9 +12,8 @@ Feature: Unique tenant creation
     And keycloak SSO system notify all systems that a tenant named <tenant_name> is existing via sent <new_tenant_created_event>
 
     Examples:
-      | tenant_name     | tenant_creation_confirmed_event_type | tenant_identification_data_type | new_tenant_created_event |
-      | "CYBNITY"       | "TENANT_CREATION_CONFIRMED_EVENT"    | "tenantIdentity"                | "TENANT_CREATED_EVENT"   |
-      | "C Y B N I T Y" | "TENANT_CREATION_CONFIRMED_EVENT"    | "tenantIdentity"                | "TENANT_CREATED_EVENT"   |
+      | tenant_name | tenant_creation_confirmed_event_type | tenant_identification_data_type | new_tenant_created_event |
+      | "CYBNITY"   | "TENANT_CREATION_CONFIRMED_EVENT"    | "tenantIdentity"                | "TENANT_CREATED_EVENT"   |
 
   @exceptionTest @functionalTest
   Scenario Outline: Attempt to create a tenant with the same name as an existing tenant

@@ -9,13 +9,13 @@ import io.cucumber.testng.CucumberOptions;
  */
 // See "Using plugins" chapter of https://cucumber.io/docs/cucumber/api/#using-plugins about available options configuration
 @CucumberOptions(
-        features = "src/main/resources/org/cybnity/application/keycloak/admin/impl/test/TenantCreation.feature",
+        features = "src/main/resources/org/cybnity/application/keycloak/admin/impl/test/RealmCreation.feature",
         glue = {"org.cybnity.application.keycloak.admin.impl.test.definitions"} /* package path to step definition file */,
-        tags = "@integrationTest" /* Tag value referencing test in feature file from this scenario */,
+        tags = "@integrationTest or @functionalTest" /* Tag value referencing test in feature file from this scenario (see https://github.com/cucumber/tag-expressions) */,
         plugin = {"message:target/cucumber-report.ndjson",
-                "html:target/cucumber-tenant-creation-report.html", "pretty" /* 2 formatter plugins to use */},
+                "html:target/cucumber-realm-creation-report.html", "pretty" /* 2 formatter plugins to use */},
         monochrome = true /* Console output from Cucumber in readable format*/)
-public class TenantCreationCase extends AbstractTestNGCucumberTests {
+public class RealmCreationTestCase extends AbstractTestNGCucumberTests {
 
     /**
      * Path name of environment variable definitions required during the test execution.

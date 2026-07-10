@@ -5,7 +5,7 @@
     <test name="Keycloak adapters integration" preserve-order="true">
         <classes>
             <!-- ac-adapter-keycloak-admin-impl library test plan perimeter -->
-            <class name="org.cybnity.application.keycloak.admin.impl.test.runner.TenantCreationCase"/>
+            <class name="org.cybnity.application.keycloak.admin.impl.test.runner.RealmCreationTestCase"/>
         </classes>
     </test>
 </suite>

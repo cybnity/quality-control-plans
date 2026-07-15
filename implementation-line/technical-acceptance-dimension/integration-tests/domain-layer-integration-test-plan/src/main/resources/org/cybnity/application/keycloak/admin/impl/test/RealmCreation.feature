@@ -9,6 +9,7 @@ Feature: Unique realm creation
     And a realm element is registered and managed into Keycloak SSO system
     And the realm technical identification data are received from Keycloak
     And the created realm label does not include any blank character
+    And default realm extended resources created
 
     Examples:
       | tenant_name |

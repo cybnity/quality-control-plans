@@ -11,6 +11,9 @@ import org.cybnity.application.accesscontrol.adapter.api.admin.OperationExceptio
 import org.cybnity.application.accesscontrol.adapter.api.model.TenantDTO;
 import org.cybnity.application.keycloak.admin.impl.test.runner.RealmCreationTestCase;
 import org.cybnity.framework.UnoperationalStateException;
+import org.cybnity.keycloak.api.KeycloakAPIResponseCode;
+import org.cybnity.keycloak.api.KeycloakInterpretableContext;
+import org.cybnity.keycloak.api.ResponseCodeIdentificationExpression;
 import org.cybnity.test.commons.ContextualizedTest;
 import org.cybnity.test.commons.DomainLayerIntegrationProvider;
 import org.testng.Assert;
@@ -113,6 +116,11 @@ public class CreateRealmSteps extends ContextualizedTest {
         Assert.assertFalse(keycloakFormattedLabel.contains(" "), "shall not contain blank character to be usable over URL!"); // Potential unusability for future call over Keycloak REST API
     }
 
+    @And("default realm extended resources created")
+    public void defaultRealmExtendedResourcesCreated() {
+
+    }
+
     @Given("a realm already exist in Keycloak SSO system that is named {string}")
     public void aRealmAlreadyExistInKeycloakSsoSystemThatIsNamed(String existingTenantName) throws OperationException {
         testTenantsCache.add(existingTenantName); // Feed test data cache
@@ -123,14 +131,26 @@ public class CreateRealmSteps extends ContextualizedTest {
 
     @When("the user request creation of a tenant with name equals to {string}")
     public void the_user_request_creation_of_a_tenant_with_name_equals_to(String tenantName) {
+        // Feed test data cache
+        testTenantsCache.add(tenantName);
         // Attempt creation of a new tenant with same name as previous existing in Keycloak
         try {
             this.adapter.createTenant(tenantName);
             invalidTenantLabelCreationAttemptResult = false;
             assert false; // Invalid performed operation that should have been rejected for cause of duplicate realm (with same name already existing)
         } catch (OperationException op) {
-            invalidTenantLabelCreationAttemptResult = true;
-            assert true; // Normal rejected operation for cause of existing same tenant named in Keycloak
+            String errorMsg = op.getMessage();
+            // Identify if is a valid rejection cause
+            ResponseCodeIdentificationExpression exp = new ResponseCodeIdentificationExpression(errorMsg);
+            KeycloakAPIResponseCode error = (KeycloakAPIResponseCode) exp.interpret(new KeycloakInterpretableContext());
+
+            if (KeycloakAPIResponseCode.CONFLICT == error /* HTTP 409 conflict exception */ || op.getCause() instanceof IllegalArgumentException /* blank character included*/) {
+                invalidTenantLabelCreationAttemptResult = true;
+                assert true;// Normal rejected operation for cause of existing same tenant named in Keycloak
+            } else {
+                invalidTenantLabelCreationAttemptResult = false;
+                assert false;  // Invalid cause of rejected creation
+            }
         }
     }
 

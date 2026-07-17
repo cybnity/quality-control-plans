@@ -9,13 +9,13 @@ Feature: Unique realm creation
     And a realm element is registered and managed into Keycloak SSO system
     And the realm technical identification data are received from Keycloak
     And the created realm label does not include any blank character
-    And default realm extended resources created
+    And default realm extended resources created like <ui_layer_client_name>
 
     Examples:
-      | tenant_name |
-      | "CYBNITY"   |
-      | "Cybnity5"  |
-      | "cybnity6"  |
+      | tenant_name | ui_layer_client_name           |
+      | "CYBNITY"   | "web-reactive-frontend-system" |
+      | "Cybnity5"  | "web-reactive-frontend-system" |
+      | "cybnity6"  | "web-reactive-frontend-system" |
 
   @exceptionTest @integrationTest
   Scenario Outline: Attempt to create a tenant with the same name as an existing realm

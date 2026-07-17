@@ -81,6 +81,8 @@ public class CreateRealmSteps extends ContextualizedTest {
             }
         }
         testTenantsCache.clear(); // Delete all cached scenario data
+        this.adapter.freeUpResources();
+        this.adminClient.close();
 
         logger().info("CreateRealmSteps cleanup executed successfully");
     }
@@ -127,8 +129,8 @@ public class CreateRealmSteps extends ContextualizedTest {
         Assert.assertFalse(keycloakFormattedLabel.contains(" "), "shall not contain blank character to be usable over URL!"); // Potential unusability for future call over Keycloak REST API
     }
 
-    @And("default realm extended resources created")
-    public void defaultRealmExtendedResourcesCreated() {
+    @And("default realm extended resources created like {string}")
+    public void defaultRealmExtendedResourcesCreatedLike(String ui_layer_client_name) {
         String realmLabel = successTestData_createdTenant.valueOfProperty(TenantDTO.PropertyAttributeKey.LABEL);
 
         RealmResource realm =adminClient.realm(realmLabel);
@@ -153,7 +155,7 @@ public class CreateRealmSteps extends ContextualizedTest {
         Iterator<ClientRepresentation> clientIt = defaultClients.iterator();
         while(!found && clientIt.hasNext()) {
             ClientRepresentation client = clientIt.next();
-            found = client.getClientId().equalsIgnoreCase("web-reactive-frontend-system");
+            found = client.getClientId().equalsIgnoreCase(ui_layer_client_name);
         }
         Assert.assertTrue(found, msg);
     }
@@ -195,4 +197,5 @@ public class CreateRealmSteps extends ContextualizedTest {
     public void keycloak_sso_system_reject_the_creation_demand() {
         Assert.assertTrue(invalidTenantLabelCreationAttemptResult, "Creation shall have been refused for cause of invalid label!");
     }
+
 }

@@ -10,16 +10,24 @@ import org.cybnity.application.accesscontrol.adapter.api.admin.IAccessAdminAdapt
 import org.cybnity.application.accesscontrol.adapter.api.admin.OperationException;
 import org.cybnity.application.accesscontrol.adapter.api.model.TenantDTO;
 import org.cybnity.application.keycloak.admin.impl.test.runner.RealmCreationTestCase;
+import org.cybnity.application.keycloak.admin.impl.test.util.KeycloakClientHelper;
 import org.cybnity.framework.UnoperationalStateException;
 import org.cybnity.keycloak.api.KeycloakAPIResponseCode;
 import org.cybnity.keycloak.api.KeycloakInterpretableContext;
 import org.cybnity.keycloak.api.ResponseCodeIdentificationExpression;
+import org.cybnity.keycloak.domain.model.RealmWithDefaultExtendedResourcesBuilder;
 import org.cybnity.test.commons.ContextualizedTest;
 import org.cybnity.test.commons.DomainLayerIntegrationProvider;
+import org.keycloak.admin.client.Keycloak;
+import org.keycloak.admin.client.resource.RealmResource;
+import org.keycloak.representations.idm.ClientRepresentation;
+import org.keycloak.representations.idm.RealmRepresentation;
 import org.testng.Assert;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Scenario steps regarding test case.
@@ -27,6 +35,7 @@ import java.util.List;
 public class CreateRealmSteps extends ContextualizedTest {
 
     private IAccessAdminAdapter adapter;
+    private Keycloak adminClient;
 
     /**
      * Temporary test data created regarding tenant (= Keycloak realm element)
@@ -54,6 +63,7 @@ public class CreateRealmSteps extends ContextualizedTest {
         invalidTenantLabelCreationAttemptResult = false; // Re-init default value of scenario result
         getEnvironmentVariables().execute(() -> {
             this.adapter = DomainLayerIntegrationProvider.instance().getAccessAdminAdapter(this.getContext());
+            this.adminClient = KeycloakClientHelper.getKeycloakClient(this.getContext());
             logger().info("CreateRealmSteps setup executed successfully");
         });
     }
@@ -71,6 +81,7 @@ public class CreateRealmSteps extends ContextualizedTest {
             }
         }
         testTenantsCache.clear(); // Delete all cached scenario data
+
         logger().info("CreateRealmSteps cleanup executed successfully");
     }
 
@@ -118,7 +129,33 @@ public class CreateRealmSteps extends ContextualizedTest {
 
     @And("default realm extended resources created")
     public void defaultRealmExtendedResourcesCreated() {
+        String realmLabel = successTestData_createdTenant.valueOfProperty(TenantDTO.PropertyAttributeKey.LABEL);
 
+        RealmResource realm =adminClient.realm(realmLabel);
+        RealmRepresentation createdOriginRealm = realm.toRepresentation();
+        // --- Check created extended configuration relative to default realm ---
+        String msg = "shall have been automatically created during tenant creation as realm default configuration element!";
+
+        // Check realm general settings have been defined
+        Map<String, String> generalSettings = createdOriginRealm.getAttributes();
+        Assert.assertNotNull(generalSettings.get(RealmWithDefaultExtendedResourcesBuilder.FRONTEND_URL), msg);
+
+        // Check browser security headers have been defined
+        Map<String, String> browserSecurityHeaders = createdOriginRealm.getBrowserSecurityHeaders();
+        Assert.assertNotNull(browserSecurityHeaders.get(RealmWithDefaultExtendedResourcesBuilder.X_FRAME_OPTIONS), msg);
+        Assert.assertNotNull(browserSecurityHeaders.get(RealmWithDefaultExtendedResourcesBuilder.CONTENT_SECURITY_POLICY), msg);
+
+        // Check that default clients have been created for Realm
+        List<ClientRepresentation> defaultClients = realm.clients().findAll();
+        Assert.assertNotNull(defaultClients, msg);
+        // Search web-reactive-frontend-system client created by default as integration config for UI layer components
+        boolean found = false;
+        Iterator<ClientRepresentation> clientIt = defaultClients.iterator();
+        while(!found && clientIt.hasNext()) {
+            ClientRepresentation client = clientIt.next();
+            found = client.getClientId().equalsIgnoreCase("web-reactive-frontend-system");
+        }
+        Assert.assertTrue(found, msg);
     }
 
     @Given("a realm already exist in Keycloak SSO system that is named {string}")

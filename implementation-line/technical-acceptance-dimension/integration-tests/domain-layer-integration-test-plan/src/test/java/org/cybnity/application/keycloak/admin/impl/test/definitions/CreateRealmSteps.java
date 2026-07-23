@@ -9,9 +9,7 @@ import io.cucumber.java.en.When;
 import org.cybnity.application.accesscontrol.adapter.api.admin.IAccessAdminAdapter;
 import org.cybnity.application.accesscontrol.adapter.api.admin.OperationException;
 import org.cybnity.application.accesscontrol.adapter.api.model.TenantDTO;
-import org.cybnity.application.keycloak.admin.impl.test.runner.RealmCreationTestCase;
 import org.cybnity.application.keycloak.admin.impl.test.util.KeycloakClientHelper;
-import org.cybnity.framework.UnoperationalStateException;
 import org.cybnity.keycloak.api.KeycloakAPIResponseCode;
 import org.cybnity.keycloak.api.KeycloakInterpretableContext;
 import org.cybnity.keycloak.api.ResponseCodeIdentificationExpression;
@@ -48,18 +46,25 @@ public class CreateRealmSteps extends ContextualizedTest {
     private boolean invalidTenantLabelCreationAttemptResult = false;
 
     /**
-     * Default constructor required by Cucumber.
-     *
-     * @throws Exception When environment variables read problem.
+     * Default constructor based on current environment variables defined by the system where this test plan is executed.
      */
-    public CreateRealmSteps() throws Exception {
-        super(org.cybnity.application.keycloak.admin.impl.test.runner.RealmCreationTestCase.ENV_PROPERTY_FILEPATH);
+    public CreateRealmSteps() {
+        super();
     }
 
+    /**
+     * Constructor based on custom environment variables file path.
+     *
+     * @param envPropertyFilepath Mandatory path to environment variables file that will be added to the current system defined variables, and will be usable during tests' execution.
+     * @throws Exception When environment variables read problem.
+     */
+    public CreateRealmSteps(String envPropertyFilepath) throws Exception {
+        super(envPropertyFilepath);
+    }
+
+
     @Before
-    public void setup() throws UnoperationalStateException, Exception {
-        // Define environment variables required by this test execution (e.g; keycloak admin adapter) from properties file
-        this.setupEnvironmentVariables(RealmCreationTestCase.ENV_PROPERTY_FILEPATH); // Context is loaded with environment variables
+    public void setup() throws Exception {
         invalidTenantLabelCreationAttemptResult = false; // Re-init default value of scenario result
         getEnvironmentVariables().execute(() -> {
             this.adapter = DomainLayerIntegrationProvider.instance().getAccessAdminAdapter(this.getContext());
@@ -133,7 +138,7 @@ public class CreateRealmSteps extends ContextualizedTest {
     public void defaultRealmExtendedResourcesCreatedLike(String ui_layer_client_name) {
         String realmLabel = successTestData_createdTenant.valueOfProperty(TenantDTO.PropertyAttributeKey.LABEL);
 
-        RealmResource realm =adminClient.realm(realmLabel);
+        RealmResource realm = adminClient.realm(realmLabel);
         RealmRepresentation createdOriginRealm = realm.toRepresentation();
         // --- Check created extended configuration relative to default realm ---
         String msg = "shall have been automatically created during tenant creation as realm default configuration element!";
@@ -153,7 +158,7 @@ public class CreateRealmSteps extends ContextualizedTest {
         // Search web-reactive-frontend-system client created by default as integration config for UI layer components
         boolean found = false;
         Iterator<ClientRepresentation> clientIt = defaultClients.iterator();
-        while(!found && clientIt.hasNext()) {
+        while (!found && clientIt.hasNext()) {
             ClientRepresentation client = clientIt.next();
             found = client.getClientId().equalsIgnoreCase(ui_layer_client_name);
         }

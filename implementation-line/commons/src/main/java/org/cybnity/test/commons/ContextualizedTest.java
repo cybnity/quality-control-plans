@@ -6,6 +6,10 @@ import org.testng.log4testng.Logger;
 import uk.org.webcompere.systemstubs.environment.EnvironmentVariables;
 import uk.org.webcompere.systemstubs.resource.PropertySource;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+
 /**
  * Automated configuration of test execution context.
  * Each test requiring a configured context including test environment variables shall extend this class.
@@ -53,6 +57,15 @@ public class ContextualizedTest {
     }
 
     /**
+     * Get all current system defined environment variables.
+     *
+     * @return A map of variables and values as immutable collection.
+     */
+    protected Map<String, String> getSystemEnvironmentVariables() {
+        return System.getenv();
+    }
+
+    /**
      * Read environment variables as context properties from a file path.
      * Setup or refresh the context according to the read (or empty set) environment variables.
      *
@@ -60,10 +73,30 @@ public class ContextualizedTest {
      * @throws Exception When problem during the read of file or during System variables setup.
      */
     protected void setupEnvironmentVariables(String environmentVariablesPropertySourceFilePath) throws Exception {
+
+        // Get all existing system environment variable (accessible from OS executing this test application) and add into container
+        Map<String, String> systemEnvtVariables = getSystemEnvironmentVariables(); // Unmodifiable map
+        if (systemEnvtVariables == null) {
+            systemEnvtVariables = new HashMap<>(); // Modifiable version
+        } else {
+            systemEnvtVariables = new HashMap<>(systemEnvtVariables); // Modifiable version
+        }
+
         if (environmentVariablesPropertySourceFilePath != null && !environmentVariablesPropertySourceFilePath.isEmpty()) {
-            // Load and defined environment variable from a file path
-            environmentVariables = new EnvironmentVariables().set(
-                    PropertySource.fromFile(environmentVariablesPropertySourceFilePath));
+            Object value;
+            // Load and add environment variables from file path (potentially can replace existing system environment variables' values)
+            Properties customVar = PropertySource.fromFile(environmentVariablesPropertySourceFilePath);
+            for (Map.Entry<Object, Object> entry : customVar.entrySet()) {
+                value = entry.getValue();
+                if (value instanceof String && !((String) value).isEmpty()) {
+                    if (entry.getKey() instanceof String) {
+                        systemEnvtVariables.put((String) entry.getKey(), (String) value);
+                    }
+                }
+            }
+        }
+        if (!systemEnvtVariables.isEmpty()) {
+            environmentVariables = new EnvironmentVariables(systemEnvtVariables);
         } else {
             environmentVariables = new EnvironmentVariables(); // Empty container
         }
@@ -94,7 +127,6 @@ public class ContextualizedTest {
         // Build reusable context
         if (this.context == null)
             this.context = new Context();
-
         getEnvironmentVariables().getVariables().forEach((key, value) -> {
             try {
                 this.context.addResource(value, key, true /* force refresh of potential existing previous value */);

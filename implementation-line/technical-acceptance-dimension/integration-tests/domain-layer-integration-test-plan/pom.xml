@@ -10,8 +10,11 @@
 	<packaging>jar</packaging>
 	<name>--- Domain layer tests</name>
 	<properties>
-		<!-- Test Plan project customization specific properties
-		<testPlan-jar.mainClass>org.testng.TestNG</testPlan-jar.mainClass>-->
+		<!-- Test Plan project customization specific properties -->
+
+		<!-- Customized TestNG runner for the layer integration suites campaign execution -->
+		<testPlan-jar.mainClass>org.testng.TestNG</testPlan-jar.mainClass>
+
 		<!-- dataproviderthreadcount is the default number of threads to use for data providers when running tests in parallel -->
 		<surefire.dataprovider.threadcount>1</surefire.dataprovider.threadcount>
 	</properties>
@@ -33,8 +36,11 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<configuration>
 						<suiteXmlFiles>
-							<suiteXmlFile>testng.xml</suiteXmlFile>
+							<suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
 						</suiteXmlFiles>
+						<!-- Optional: Parallel Execution -->
+						<parallel>methods</parallel>
+						<threadCount>5</threadCount>
 						<properties>
 							<property>
 								<name>dataproviderthreadcount</name>
@@ -69,16 +75,20 @@
 					<artifactId>maven-assembly-plugin</artifactId>
 					<configuration>
 						<descriptors>
+							<!-- create a JAR which contained the test binary output of the project -->
 							<descriptor>src/test/resources/test-jar-with-dependencies.xml</descriptor>
 						</descriptors>
 						<archive>
 							<manifest>
-								<mainClass>${testPlan-jar.mainClass}</mainClass>
+								<!-- ${testPlan-jar.mainClass} -->
+								<mainClass>org.testng.TestNG</mainClass>
 							</manifest>
 						</archive>
+						<!--
 						<descriptorRefs>
+							 create a JAR which contains the binary output of the project, including the unpacked dependencies
 							<descriptorRef>jar-with-dependencies</descriptorRef>
-						</descriptorRefs>
+						</descriptorRefs> -->
 					</configuration>
 					<executions>
 						<execution>

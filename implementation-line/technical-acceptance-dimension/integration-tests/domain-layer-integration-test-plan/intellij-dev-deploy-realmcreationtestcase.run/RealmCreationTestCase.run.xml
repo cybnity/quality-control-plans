@@ -1,0 +1,40 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="RealmCreationTestCase" type="TestNG" nameIsGenerated="true">
+    <module name="domain-layer-integration-test-plan" />
+    <shortenClasspath name="NONE" />
+    <useClassPathOnly />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="org.cybnity.application.keycloak.admin.impl.test.runner.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="SUITE_NAME" value="" />
+    <option name="PACKAGE_NAME" value="org.cybnity.application.keycloak.admin.impl.test.runner" />
+    <option name="MAIN_CLASS_NAME" value="org.cybnity.application.keycloak.admin.impl.test.runner.RealmCreationTestCase" />
+    <option name="GROUP_NAME" value="" />
+    <option name="TEST_OBJECT" value="CLASS" />
+    <option name="PARAMETERS" value="" />
+    <option name="OUTPUT_DIRECTORY" value="" />
+    <option name="TEST_SEARCH_SCOPE">
+      <value defaultName="moduleWithDependencies" />
+    </option>
+    <option name="PROPERTIES_FILE" value="" />
+    <envs>
+      <env name="KEYCLOAK_SERVER_URL" value="https://dev-deploy.cybnity.tech" />
+      <env name="REALM_DEFAULT_FRONTEND_URL" value="https://dev-deploy.cybnity.tech/auth/" />
+      <env name="REALM_DEFAULT_SECURITY_HEADER_CONTENT_SECURITY_POLICY" value="frame-src 'self'; frame-ancestors 'self'; object-src 'none';" />
+      <env name="REALM_DEFAULT_SECURITY_HEADER_XFRAME_OPTIONS" value="SAMEORIGIN" />
+      <env name="REALM_MASTER_CLIENTID" value="admin-cli" />
+      <env name="REALM_MASTER_GRANT_TYPE" value="password" />
+      <env name="REALM_MASTER_NAME" value="master" />
+      <env name="REALM_MASTER_PASSWORD" value="admin" />
+      <env name="REALM_MASTER_USERNAME" value="admin" />
+    </envs>
+    <properties />
+    <listeners />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

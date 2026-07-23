@@ -1,0 +1,26 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="TestRunner" type="Application" factoryName="Application" nameIsGenerated="true">
+    <envs>
+      <env name="KEYCLOAK_SERVER_URL" value="https://dev-deploy.cybnity.tech" />
+      <env name="REALM_DEFAULT_FRONTEND_URL" value="https://dev-deploy.cybnity.tech/auth/" />
+      <env name="REALM_DEFAULT_SECURITY_HEADER_CONTENT_SECURITY_POLICY" value="frame-src 'self'; frame-ancestors 'self'; object-src 'none';" />
+      <env name="REALM_DEFAULT_SECURITY_HEADER_XFRAME_OPTIONS" value="SAMEORIGIN" />
+      <env name="REALM_MASTER_CLIENTID" value="admin-cli" />
+      <env name="REALM_MASTER_GRANT_TYPE" value="password" />
+      <env name="REALM_MASTER_NAME" value="master" />
+      <env name="REALM_MASTER_PASSWORD" value="admin" />
+      <env name="REALM_MASTER_USERNAME" value="admin" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="org.cybnity.application.keycloak.admin.impl.test.TestRunner" />
+    <module name="domain-layer-integration-test-plan" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="org.cybnity.application.keycloak.admin.impl.test.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

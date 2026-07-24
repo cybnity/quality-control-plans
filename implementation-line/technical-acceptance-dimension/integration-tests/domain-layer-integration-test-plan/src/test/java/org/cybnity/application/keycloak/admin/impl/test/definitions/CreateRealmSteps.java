@@ -102,7 +102,7 @@ public class CreateRealmSteps extends ContextualizedTest {
         // Feed test data cache
         testTenantsCache.add(tenantName);
         // Create a Realm into Keycloak, automatically translated into TenantDTO by API adapter
-        successTestData_createdTenant = this.adapter.createTenant(tenantName);
+        successTestData_createdTenant = this.adapter.createTenant(tenantName, tenantName.toLowerCase());
     }
 
     @Then("keycloak SSO system confirm the realm success creation")
@@ -170,7 +170,7 @@ public class CreateRealmSteps extends ContextualizedTest {
         testTenantsCache.add(existingTenantName); // Feed test data cache
         invalidTenantLabelCreationAttemptResult = false; // Re-init
         // Add test tenant data as existing initial state into Keycloak
-        this.adapter.createTenant(existingTenantName);
+        this.adapter.createTenant(existingTenantName, existingTenantName.toLowerCase());
     }
 
     @When("the user request creation of a tenant with name equals to {string}")
@@ -179,7 +179,7 @@ public class CreateRealmSteps extends ContextualizedTest {
         testTenantsCache.add(tenantName);
         // Attempt creation of a new tenant with same name as previous existing in Keycloak
         try {
-            this.adapter.createTenant(tenantName);
+            this.adapter.createTenant(tenantName, tenantName.toLowerCase());
             invalidTenantLabelCreationAttemptResult = false;
             assert false; // Invalid performed operation that should have been rejected for cause of duplicate realm (with same name already existing)
         } catch (OperationException op) {

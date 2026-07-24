@@ -11,7 +11,6 @@ public class TestPlan {
 
     public static void main(String[] args) {
         TestNG testNG = new TestNG();
-        testNG.setXmlPathInJar("testng.xml");
         testNG.setTestClasses(runnableTestSuites());
         testNG.run();
     }

@@ -15,7 +15,8 @@ buildNumber.properties
 #.classpath
 #.settings/
 **/.flattened-pom.xml
-/implementation-line/technical-acceptance-dimension/integration-tests/domain-layer-integration-test-plan/test-output
-/implementation-line/technical-acceptance-dimension/integration-tests/domain-layer-integration-test-plan/.idea
+**/test-output
 **/.idea
 **/mpp-official-version-pom-tree.txt
+**/cucumber-*.html
+**/cucumber-*.ndjson

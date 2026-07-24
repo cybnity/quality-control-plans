@@ -12,6 +12,7 @@ A global TestNG test suite is maintained into `testng.xml` file (and aligned wit
 
 ## Tests source code organization
 - `src/test/java` folder
+
 ```
 org.cybnity.application (root of test plan)
 └── keycloak (integrated component based package name)
@@ -24,6 +25,7 @@ org.cybnity.application (root of test plan)
 ```
 
 - `src/test/resources` folder
+
 ```
 org.cybnity.application (root of test plan)
 └── keycloak (integrated component based package name)

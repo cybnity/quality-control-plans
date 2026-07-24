@@ -25,6 +25,7 @@ public class TestPlan {
                 /* Keycloak adapter tests */
                 KeycloakRealmCreationTestCase.class
                 // Add here other tests
+                
         };
     }
 

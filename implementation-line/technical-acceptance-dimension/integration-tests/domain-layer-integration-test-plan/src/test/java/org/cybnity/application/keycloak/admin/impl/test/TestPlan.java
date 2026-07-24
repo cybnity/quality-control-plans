@@ -22,7 +22,8 @@ public class TestPlan {
      */
     private static Class<?>[] runnableTestSuites() {
         return new Class[]{
-                KeycloakRealmCreationTestCase.class /* Keycloak adapter tests */
+                /* Keycloak adapter tests */
+                KeycloakRealmCreationTestCase.class
                 // Add here other tests
         };
     }

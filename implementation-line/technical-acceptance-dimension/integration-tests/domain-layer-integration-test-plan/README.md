@@ -14,19 +14,19 @@ A global TestNG test suite is maintained into `testng.xml` file (and aligned wit
 - `src/test/java` folder
 ```
 org.cybnity.application (root of test plan)
-├── keycloak (integrated component based package name)
-│   ├── admin.impl.test (sub-component or topic based packaged name; for e.g here about keycloak Admin implementation client)
-│   │   ├── definitions (hosting of Cucumber scenario steps classes executing test cases specification)
-│   │   ├── runner (hosting of bridge classes between Cucumber feature tests and TestNG)
-│   │   ├── util (optional helper classes)
-│   │   └── TestPlan (standalong test suite class relative to the full perimeter of tested sub-component or topic)
-│   └── sso.impl.test (other tested sub-component or topic perimeter)
+└── keycloak (integrated component based package name)
+    ├── admin.impl.test (sub-component or topic based packaged name; for e.g here about keycloak Admin implementation client)
+    │   ├── definitions (hosting of Cucumber scenario steps classes executing test cases specification)
+    │   ├── runner (hosting of bridge classes between Cucumber feature tests and TestNG)
+    │   ├── util (optional helper classes)
+    │   └── TestPlan (standalong test suite class relative to the full perimeter of tested sub-component or topic)
+    └── sso.impl.test (other tested sub-component or topic perimeter)
 ```
 
--`src/test/resources` folder
+- `src/test/resources` folder
 ```
 org.cybnity.application (root of test plan)
-├── keycloak (integrated component based package name)
+└── keycloak (integrated component based package name)
 │   └── admin.impl.test.features (Cucumber feature files as scenario and test cases specification)
 ├── cucumber.properties (Cucumber configuration file)
 ├── env.properties (environment variables helper file regarding mandatory need values during test classes execution, and auto-completed via Maven profile)

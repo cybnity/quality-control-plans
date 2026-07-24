@@ -1,5 +1,5 @@
 name: Artifacts Repository Refresh
-run-name: COMMIT STAGE - Java test plan packages version repository publishing
+run-name: COMMIT STAGE - Test Plan packages version repository publishing
 on:
   workflow_call:
     inputs:

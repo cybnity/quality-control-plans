@@ -1,6 +1,6 @@
 # Main COMMIT STAGE workflow regarding the java projects managed via Maven tool
 name: Quality Control Project CI (COMMIT STAGE)
-run-name: COMMIT STAGE - Java codes build & quality verification
+run-name: COMMIT STAGE - Test Plans codes build & quality verification
 on:
   push:
     # execution when development java source codes commit is pushed by a developer of a feature, hotfix, or fix branch

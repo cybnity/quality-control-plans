@@ -13,17 +13,28 @@
             <useProjectAttachments>true</useProjectAttachments>
             <unpack>true</unpack>
             <scope>test</scope>
+            <!--
+            <includes>
+                <include>*:jar:*</include>
+                <include>*:test-jar:*</include>
+            </includes>-->
         </dependencySet>
     </dependencySets>
-    <!--
+    <!-- Include all artifacts of test jar
     <fileSets>
         <fileSet>
             <directory>${project.build.directory}/test-classes</directory>
             <outputDirectory>/</outputDirectory>
             <includes>
                 <include>**/*.class</include>
+                <include>**/*.feature</include>
+                <include>**/*.xml</include>
+                <include>**/cucumber.properties</include>
             </includes>
+            <excludes>
+                <exclude>**/env.properties</exclude>
+            </excludes>
             <useDefaultExcludes>true</useDefaultExcludes>
         </fileSet>
-    </fileSets>-->
+    </fileSets> -->
 </assembly>

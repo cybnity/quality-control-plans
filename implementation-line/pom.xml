@@ -223,7 +223,15 @@
 			</activation>
 			<properties>
 				<!-- Configuration elements relative to specificity of the environment targeted by the test execution (EXECUTION CONTEXT) -->
-
+				<testplan.env.keycloak.server.url>https://dev-deploy.cybnity.tech</testplan.env.keycloak.server.url>
+				<testplan.env.keycloak.realm.master.name>master</testplan.env.keycloak.realm.master.name>
+				<testplan.env.keycloak.realm.master.username>admin</testplan.env.keycloak.realm.master.username>
+				<testplan.env.keycloak.realm.master.password>admin</testplan.env.keycloak.realm.master.password>
+				<testplan.env.keycloak.realm.master.clientid>admin-cli</testplan.env.keycloak.realm.master.clientid>
+				<testplan.env.keycloak.realm.master.grant.type>password</testplan.env.keycloak.realm.master.grant.type>
+				<testplan.env.keycloak.realm.default.frontend.url>https://dev-deploy.cybnity.tech/auth/</testplan.env.keycloak.realm.default.frontend.url>
+				<testplan.env.keycloak.realm.default.security.header.xframe.options>SAMEORIGIN</testplan.env.keycloak.realm.default.security.header.xframe.options>
+				<testplan.env.keycloak.realm.default.security.header.content.security.policy>"frame-src 'self'; frame-ancestors 'self'; object-src 'none';"</testplan.env.keycloak.realm.default.security.header.content.security.policy>
 			</properties>
 		</profile>
 
@@ -352,7 +360,7 @@
 								<goals>
 									<!-- Try to resolve all test scope -->
 									<goal>resolve</goal>
-									<!-- Try to resolve plugins and optionnaly their dependencies -->
+									<!-- Try to resolve plugins and optionally their dependencies -->
 									<goal>resolve-plugins</goal>
 								</goals>
 							</execution>

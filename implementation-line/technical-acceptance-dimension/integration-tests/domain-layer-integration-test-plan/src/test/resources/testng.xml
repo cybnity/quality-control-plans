@@ -1,17 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<!-- See testng.xml documentation at https://testng.org/#_testng_xml -->
-<suite name="Domain Layer Integration Tests Suite" verbose="1">
+<!-- See testng.xml documentation at https://testng.org/#_testng_xml
+     Manage here test suites configuration and parallel execution
+-->
+<suite name="DomainLayerIntegrationTests" verbose="1">
 
     <!-- Test perimeters to execute -->
-    <test name="Keycloak adapters integration tests" preserve-order="true">
-        <!-- ac-adapter-keycloak-admin-impl library test plan perimeter -->
+    <test enabled="true" name="KeycloakAdapterIntegrationTests" preserve-order="true">
+
         <packages>
             <!-- all classes that have TestNG annotations -->
             <package name="org.cybnity.application.keycloak.admin.impl.test.runner"/>
         </packages>
-       <!-- <classes>
 
-            <class name="org.cybnity.application.keycloak.admin.impl.test.runner.RealmCreationTestCase"/>
-        </classes>-->
+        <!-- all classes that have TestNG annotations
+                <classes>
+                     <class name="org.cybnity.application.keycloak.admin.impl.test.runner.KeycloakRealmCreationTestCase"/>
+                 </classes>-->
     </test>
 </suite>

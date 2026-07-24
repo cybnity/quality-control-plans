@@ -1,106 +1,108 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.cybnity.test.technical</groupId>
-		<artifactId>integration-test</artifactId>
-		<version>${revision}</version>
-		<relativePath>..</relativePath>
-	</parent>
-	<artifactId>domain-layer-integration-test-plan</artifactId>
-	<packaging>jar</packaging>
-	<name>--- Domain layer tests</name>
-	<properties>
-		<!-- Test Plan project customization specific properties -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.cybnity.test.technical</groupId>
+        <artifactId>integration-test</artifactId>
+        <version>${revision}</version>
+        <relativePath>..</relativePath>
+    </parent>
+    <artifactId>domain-layer-integration-test-plan</artifactId>
+    <packaging>jar</packaging>
+    <name>--- Domain layer tests</name>
+    <properties>
+        <!-- Test Plan project customization specific properties -->
 
-		<!-- Customized TestNG runner for the layer integration suites campaign execution -->
-		<testPlan-jar.mainClass>org.testng.TestNG</testPlan-jar.mainClass>
+        <!-- Customized TestNG runner for the layer integration suites campaign execution -->
+        <testPlan-jar.mainClass>org.testng.TestNG</testPlan-jar.mainClass>
 
-		<!-- dataproviderthreadcount is the default number of threads to use for data providers when running tests in parallel -->
-		<surefire.dataprovider.threadcount>1</surefire.dataprovider.threadcount>
-	</properties>
-	<dependencies>
-		<!-- INTEGRATION WITH INFRASTRUCTURE LAYER ELEMENTS -->
-		<!-- Tested integration from implementation components -->
-		<dependency>
-			<groupId>org.cybnity.test</groupId>
-			<artifactId>commons</artifactId>
-			<scope>compile</scope>
-		</dependency>
-	</dependencies>
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<!-- Configuration of Surefire for parallel execution of Cucumber tests -->
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<configuration>
-						<suiteXmlFiles>
-							<suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
-						</suiteXmlFiles>
-						<!-- Optional: Parallel Execution -->
-						<parallel>methods</parallel>
-						<threadCount>5</threadCount>
-						<properties>
-							<property>
-								<name>dataproviderthreadcount</name>
-								<value>${surefire.dataprovider.threadcount}</value>
-							</property>
-							<!-- Work around. Surefire does not include enough
+        <!-- dataproviderthreadcount is the default number of threads to use for data providers when running tests in parallel -->
+        <surefire.dataprovider.threadcount>1</surefire.dataprovider.threadcount>
+    </properties>
+    <dependencies>
+        <!-- INTEGRATION WITH INFRASTRUCTURE LAYER ELEMENTS -->
+        <!-- Tested integration from implementation components -->
+        <dependency>
+            <groupId>org.cybnity.test</groupId>
+            <artifactId>commons</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <!-- Configuration of Surefire for parallel execution of Cucumber tests -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <suiteXmlFiles>
+                            <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                        </suiteXmlFiles>
+                        <systemPropertyVariables>
+                        </systemPropertyVariables>
+                        <!-- Optional: Parallel Execution -->
+                        <parallel>methods</parallel>
+                        <threadCount>5</threadCount>
+                        <properties>
+                            <property>
+                                <name>dataproviderthreadcount</name>
+                                <value>${surefire.dataprovider.threadcount}</value>
+                            </property>
+                            <!-- Work around. Surefire does not include enough
                             information to disambiguate between different
                             examples and scenarios. -->
-							<configurationParameters>
-								cucumber.junit-platform.naming-strategy=long
-							</configurationParameters>
-						</properties>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>3.3.0</version>
-					<executions>
-						<execution>
-							<goals>
-								<goal>test-jar</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
+                            <configurationParameters>
+                                cucumber.junit-platform.naming-strategy=long
+                            </configurationParameters>
+                        </properties>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.3.0</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>test-jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
 
-				<plugin>
-					<!-- Test Application JAR creation configuration -->
-					<!-- Help at https://codingtechroom.com/question/how-to-create-executable-jar-file-cucumber -->
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-assembly-plugin</artifactId>
-					<configuration>
-						<descriptors>
-							<!-- create a JAR which contained the test binary output of the project -->
-							<descriptor>src/test/resources/test-jar-with-dependencies.xml</descriptor>
-						</descriptors>
-						<archive>
-							<manifest>
-								<!-- ${testPlan-jar.mainClass} -->
-								<mainClass>org.testng.TestNG</mainClass>
-							</manifest>
-						</archive>
-						<!--
-						<descriptorRefs>
-							 create a JAR which contains the binary output of the project, including the unpacked dependencies
-							<descriptorRef>jar-with-dependencies</descriptorRef>
-						</descriptorRefs> -->
-					</configuration>
-					<executions>
-						<execution>
-							<id>make-assembly</id> <!-- for inheritance merges -->
-							<phase>package</phase> <!-- bind to the packaging phase -->
-							<goals>
-								<goal>single</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
+                <plugin>
+                    <!-- Test Application JAR creation configuration -->
+                    <!-- Help at https://codingtechroom.com/question/how-to-create-executable-jar-file-cucumber -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <configuration>
+                        <descriptors>
+                            <!-- create a JAR which contained the test binary output of the project -->
+                            <descriptor>src/test/resources/test-jar-with-dependencies.xml</descriptor>
+                        </descriptors>
+                        <archive>
+                            <manifest>
+                                <mainClass>${testPlan-jar.mainClass}</mainClass>
+                            </manifest>
+                        </archive>
+                        <!--
+                        <descriptorRefs>
+                             create a JAR which contains the binary output of the project, including the unpacked dependencies
+                            <descriptorRef>jar-with-dependencies</descriptorRef>
+                        </descriptorRefs> -->
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>make-assembly</id> <!-- for inheritance merges -->
+                            <phase>package</phase> <!-- bind to the packaging phase -->
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>

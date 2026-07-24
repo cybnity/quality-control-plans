@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="TestRunner" type="Application" factoryName="Application" nameIsGenerated="true">
+  <configuration default="false" name="TestPlan" type="Application" factoryName="Application">
     <envs>
       <env name="KEYCLOAK_SERVER_URL" value="https://dev-deploy.cybnity.tech" />
       <env name="REALM_DEFAULT_FRONTEND_URL" value="https://dev-deploy.cybnity.tech/auth/" />
@@ -11,7 +11,7 @@
       <env name="REALM_MASTER_PASSWORD" value="admin" />
       <env name="REALM_MASTER_USERNAME" value="admin" />
     </envs>
-    <option name="MAIN_CLASS_NAME" value="org.cybnity.application.keycloak.admin.impl.test.TestRunner" />
+    <option name="MAIN_CLASS_NAME" value="org.cybnity.application.keycloak.admin.impl.test.TestPlan" />
     <module name="domain-layer-integration-test-plan" />
     <extension name="coverage">
       <pattern>

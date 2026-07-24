@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="RealmCreationTestCase" type="TestNG" nameIsGenerated="true">
+  <configuration default="false" name="KeycloakRealmCreationTestCase" type="TestNG">
     <module name="domain-layer-integration-test-plan" />
     <shortenClasspath name="NONE" />
     <useClassPathOnly />
@@ -11,7 +11,7 @@
     </extension>
     <option name="SUITE_NAME" value="" />
     <option name="PACKAGE_NAME" value="org.cybnity.application.keycloak.admin.impl.test.runner" />
-    <option name="MAIN_CLASS_NAME" value="org.cybnity.application.keycloak.admin.impl.test.runner.RealmCreationTestCase" />
+    <option name="MAIN_CLASS_NAME" value="org.cybnity.application.keycloak.admin.impl.test.runner.KeycloakRealmCreationTestCase" />
     <option name="GROUP_NAME" value="" />
     <option name="TEST_OBJECT" value="CLASS" />
     <option name="PARAMETERS" value="" />

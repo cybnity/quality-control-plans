@@ -8,6 +8,8 @@ on:
       - 'feature*'
       - 'hotfix*'
       - 'fix*'
+      - 'staging'
+
     # execute only when changes detected on files or java sub-projects contents
     # becarefull, path filters are not evaluated on tags
     paths:
@@ -31,6 +33,8 @@ on:
       - 'feature*'
       - 'hotfix*'
       - 'fix*'
+      - 'staging'
+
     # execute only when reviewed files or java sub-projects
     paths:
     - 'pom.xml'
@@ -44,6 +48,8 @@ on:
       - 'feature*'
       - 'hotfix*'
       - 'fix*'
+      - 'staging'
+
     # execute only when reviewed files or java sub-projects
     paths:
       - 'pom.xml'

@@ -8,7 +8,6 @@ on:
       - 'feature*'
       - 'hotfix*'
       - 'fix*'
-      - 'staging'
 
     # execute only when changes detected on files or java sub-projects contents
     # becarefull, path filters are not evaluated on tags
@@ -33,7 +32,6 @@ on:
       - 'feature*'
       - 'hotfix*'
       - 'fix*'
-      - 'staging'
 
     # execute only when reviewed files or java sub-projects
     paths:
@@ -48,7 +46,6 @@ on:
       - 'feature*'
       - 'hotfix*'
       - 'fix*'
-      - 'staging'
 
     # execute only when reviewed files or java sub-projects
     paths:

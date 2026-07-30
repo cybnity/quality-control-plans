@@ -33,6 +33,7 @@
 
 		<!-- Test Plan project customization specific properties -->
 		<testPlan-jar.mainClass>org.testng.TestNG</testPlan-jar.mainClass>
+		<cybnity.ac.revision>feature-237-SNAPSHOT</cybnity.ac.revision>
 	</properties>
 
 	<dependencyManagement>
@@ -84,11 +85,6 @@
 				<version>${cybnity.software.revision}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.cybnity.application.access-control.adapters</groupId>
-				<artifactId>keycloak-admin-impl</artifactId>
-				<version>${cybnity.software.revision}</version>
-			</dependency>
-			<dependency>
 				<groupId>org.cybnity.features.technical.persistence</groupId>
 				<artifactId>redis-store</artifactId>
 				<version>${cybnity.software.revision}</version>
@@ -97,6 +93,11 @@
 				<groupId>org.cybnity.features.technical.persistence</groupId>
 				<artifactId>janusgraph-repository</artifactId>
 				<version>${cybnity.software.revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cybnity.application.access-control.adapters</groupId>
+				<artifactId>keycloak-admin-impl</artifactId>
+				<version>${cybnity.ac.revision}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

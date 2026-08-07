@@ -102,7 +102,7 @@ public class CreateRealmSteps extends ContextualizedTest {
         // Feed test data cache
         testTenantsCache.add(tenantName);
         // Create a Realm into Keycloak, automatically translated into TenantDTO by API adapter
-        successTestData_createdTenant = this.adapter.createTenant(tenantName, tenantName + " " /* Tested supported blank space by display label */ + "Reserved Domain");
+        successTestData_createdTenant = this.adapter.createTenant(tenantName, tenantName + " " /* Tested supported blank space by display label */ + "reserved domain for domain layer integration test plan");
     }
 
     @Then("keycloak SSO system confirm the realm success creation")

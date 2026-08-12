@@ -230,9 +230,41 @@
 				<testplan.env.keycloak.realm.master.password>admin</testplan.env.keycloak.realm.master.password>
 				<testplan.env.keycloak.realm.master.clientid>admin-cli</testplan.env.keycloak.realm.master.clientid>
 				<testplan.env.keycloak.realm.master.grant.type>password</testplan.env.keycloak.realm.master.grant.type>
-				<testplan.env.keycloak.realm.default.frontend.url>https://dev-deploy.cybnity.tech/auth/</testplan.env.keycloak.realm.default.frontend.url>
-				<testplan.env.keycloak.realm.default.security.header.xframe.options>SAMEORIGIN</testplan.env.keycloak.realm.default.security.header.xframe.options>
-				<testplan.env.keycloak.realm.default.security.header.content.security.policy>"frame-src 'self'; frame-ancestors 'self'; object-src 'none';"</testplan.env.keycloak.realm.default.security.header.content.security.policy>
+				<testplan.env.keycloak.adapter.config.file.path>target/test-classes/ac-adapter-keycloak-config.properties</testplan.env.keycloak.adapter.config.file.path>
+				<testplan.keycloak.adapter.config.default.realm.isenabled>true</testplan.keycloak.adapter.config.default.realm.isenabled>
+				<testplan.keycloak.adapter.config.default.realm.sslmode>external</testplan.keycloak.adapter.config.default.realm.sslmode>
+				<testplan.keycloak.adapter.config.default.realm.isbruteforceprotected>true</testplan.keycloak.adapter.config.default.realm.isbruteforceprotected>
+				<testplan.keycloak.adapter.config.default.realm.isadmineventsenabled>true</testplan.keycloak.adapter.config.default.realm.isadmineventsenabled>
+				<testplan.keycloak.adapter.config.default.realm.isadmineventdetailsenabled>true</testplan.keycloak.adapter.config.default.realm.isadmineventdetailsenabled>
+				<testplan.keycloak.adapter.config.default.realm.iseventsenabled>true</testplan.keycloak.adapter.config.default.realm.iseventsenabled>
+				<testplan.keycloak.adapter.config.default.realm.isorganizationenabled>true</testplan.keycloak.adapter.config.default.realm.isorganizationenabled>
+				<testplan.keycloak.adapter.config.default.realm.isadminpermissionsmgtenabled>true</testplan.keycloak.adapter.config.default.realm.isadminpermissionsmgtenabled>
+				<testplan.keycloak.adapter.config.default.realm.frontend.url>https://dev-deploy.cybnity.tech/auth/</testplan.keycloak.adapter.config.default.realm.frontend.url>
+				<testplan.keycloak.adapter.config.default.realm.security.header.xframe.options>SAMEORIGIN</testplan.keycloak.adapter.config.default.realm.security.header.xframe.options>
+				<testplan.keycloak.adapter.config.default.realm.security.header.content.security.policy>frame-src \'self\'\; frame-ancestors \'self\'\; object-src \'none\'\;</testplan.keycloak.adapter.config.default.realm.security.header.content.security.policy>
+				<testplan.keycloak.adapter.config.default.realm.client.1.clientid>web-reactive-frontend-system</testplan.keycloak.adapter.config.default.realm.client.1.clientid>
+				<testplan.keycloak.adapter.config.default.realm.client.1.name>Web Reactive Frontend Client</testplan.keycloak.adapter.config.default.realm.client.1.name>
+				<testplan.keycloak.adapter.config.default.realm.client.1.description>OpenID client supporting the user interface frontend systems</testplan.keycloak.adapter.config.default.realm.client.1.description>
+				<testplan.keycloak.adapter.config.default.realm.client.1.isalwaysdisplayinconsole>true</testplan.keycloak.adapter.config.default.realm.client.1.isalwaysdisplayinconsole>
+				<testplan.keycloak.adapter.config.default.realm.client.1.isauthorizationservicesenabled>false</testplan.keycloak.adapter.config.default.realm.client.1.isauthorizationservicesenabled>
+				<testplan.keycloak.adapter.config.default.realm.client.1.isclientauthenticationenabled>false</testplan.keycloak.adapter.config.default.realm.client.1.isclientauthenticationenabled>
+				<testplan.keycloak.adapter.config.default.realm.client.1.isstandardauthenticationflow>true</testplan.keycloak.adapter.config.default.realm.client.1.isstandardauthenticationflow>
+				<testplan.keycloak.adapter.config.default.realm.client.1.isdirectaccessgrantsenabled>true</testplan.keycloak.adapter.config.default.realm.client.1.isdirectaccessgrantsenabled>
+				<testplan.keycloak.adapter.config.default.realm.client.1.rooturl>\$\{authBaseUrl\}</testplan.keycloak.adapter.config.default.realm.client.1.rooturl>
+				<testplan.keycloak.adapter.config.default.realm.client.1.baseurl>http://dev-deploy.cybnity.tech:3000/</testplan.keycloak.adapter.config.default.realm.client.1.baseurl>
+				<testplan.keycloak.adapter.config.default.realm.client.1.adminurl>\$\{authBaseUrl\}</testplan.keycloak.adapter.config.default.realm.client.1.adminurl>
+				<testplan.keycloak.adapter.config.default.realm.client.1.isfrontchannellogoutenabled>true</testplan.keycloak.adapter.config.default.realm.client.1.isfrontchannellogoutenabled>
+				<testplan.keycloak.adapter.config.default.realm.client.1.isfrontchannellogoutsessionrequired>true</testplan.keycloak.adapter.config.default.realm.client.1.isfrontchannellogoutsessionrequired>
+				<testplan.keycloak.adapter.config.default.realm.client.1.redirecturis.1>http://dev-deploy.cybnity.tech/*</testplan.keycloak.adapter.config.default.realm.client.1.redirecturis.1>
+				<testplan.keycloak.adapter.config.default.realm.client.1.redirecturis.2>/*</testplan.keycloak.adapter.config.default.realm.client.1.redirecturis.2>
+				<testplan.keycloak.adapter.config.default.realm.client.1.redirecturis.3>http://dev-deploy.cybnity.tech:3000/*</testplan.keycloak.adapter.config.default.realm.client.1.redirecturis.3>
+				<testplan.keycloak.adapter.config.default.realm.client.1.postlogoutredirecturis.1>+</testplan.keycloak.adapter.config.default.realm.client.1.postlogoutredirecturis.1>
+				<testplan.keycloak.adapter.config.default.realm.client.1.postlogoutredirecturis.2>http://dev-deploy.cybnity.tech:3000/*</testplan.keycloak.adapter.config.default.realm.client.1.postlogoutredirecturis.2>
+				<testplan.keycloak.adapter.config.default.realm.client.1.weborigins.1>+</testplan.keycloak.adapter.config.default.realm.client.1.weborigins.1>
+				<testplan.keycloak.adapter.config.default.realm.client.1.weborigins.2>http://dev-deploy.cybnity.tech:3000/*</testplan.keycloak.adapter.config.default.realm.client.1.weborigins.2>
+
+
+
 			</properties>
 		</profile>
 

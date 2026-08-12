@@ -34,7 +34,6 @@ public class CreateRealmSteps extends ContextualizedTest {
 
     private IAccessAdminAdapter adapter;
     private Keycloak adminClient;
-
     /**
      * Temporary test data created regarding tenant (= Keycloak realm element)
      * Equals to a temporary test data cache.
@@ -72,6 +71,7 @@ public class CreateRealmSteps extends ContextualizedTest {
             logger().info("CreateRealmSteps setup executed successfully");
         });
     }
+
 
     @After
     public void cleanup() {
@@ -145,12 +145,12 @@ public class CreateRealmSteps extends ContextualizedTest {
 
         // Check realm general settings have been defined
         Map<String, String> generalSettings = createdOriginRealm.getAttributes();
-        Assert.assertNotNull(generalSettings.get(RealmWithDefaultExtendedResourcesBuilder.FRONTEND_URL), msg);
+        Assert.assertNotNull(generalSettings.get(RealmWithDefaultExtendedResourcesBuilder.ATTR_FRONTEND_URL), msg);
 
         // Check browser security headers have been defined
         Map<String, String> browserSecurityHeaders = createdOriginRealm.getBrowserSecurityHeaders();
-        Assert.assertNotNull(browserSecurityHeaders.get(RealmWithDefaultExtendedResourcesBuilder.X_FRAME_OPTIONS), msg);
-        Assert.assertNotNull(browserSecurityHeaders.get(RealmWithDefaultExtendedResourcesBuilder.CONTENT_SECURITY_POLICY), msg);
+        Assert.assertNotNull(browserSecurityHeaders.get(RealmWithDefaultExtendedResourcesBuilder.ATTR_X_FRAME_OPTIONS), msg);
+        Assert.assertNotNull(browserSecurityHeaders.get(RealmWithDefaultExtendedResourcesBuilder.ATTR_CONTENT_SECURITY_POLICY), msg);
 
         // Check that default clients have been created for Realm
         List<ClientRepresentation> defaultClients = realm.clients().findAll();

@@ -262,7 +262,25 @@
 				<testplan.keycloak.adapter.config.default.realm.client.1.postlogoutredirecturis.2>http://dev-deploy.cybnity.tech:3000/*</testplan.keycloak.adapter.config.default.realm.client.1.postlogoutredirecturis.2>
 				<testplan.keycloak.adapter.config.default.realm.client.1.weborigins.1>+</testplan.keycloak.adapter.config.default.realm.client.1.weborigins.1>
 				<testplan.keycloak.adapter.config.default.realm.client.1.weborigins.2>http://dev-deploy.cybnity.tech:3000/*</testplan.keycloak.adapter.config.default.realm.client.1.weborigins.2>
-
+				<testplan.keycloak.adapter.config.default.realm.role.permissioncode.usetenant>Function based authorization for access and use of resources under realm ownership</testplan.keycloak.adapter.config.default.realm.role.permissioncode.usetenant>
+				<testplan.keycloak.adapter.config.default.realm.role.permissioncode.accessapplications>Function based authorization for access to CYBNITY applications exposed endpoints (e.g; frontend user interface, or backend API)</testplan.keycloak.adapter.config.default.realm.role.permissioncode.accessapplications>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.name>ui-layer-systems-roles</testplan.keycloak.adapter.config.default.realm.clientscope.1.name>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.description>OpenID Connect build-in scope about the common roles of clients used by systems of UI layer</testplan.keycloak.adapter.config.default.realm.clientscope.1.description>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.displayOnConsentScreen>true</testplan.keycloak.adapter.config.default.realm.clientscope.1.displayOnConsentScreen>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.consentScreenText>You authorize all UI layer systems (e.g; website, api endpoints) to access CYBNITY application</testplan.keycloak.adapter.config.default.realm.clientscope.1.consentScreenText>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.includedInTokenScope>true</testplan.keycloak.adapter.config.default.realm.clientscope.1.includedInTokenScope>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.displayOrder>1</testplan.keycloak.adapter.config.default.realm.clientscope.1.displayOrder>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.name>ui-clients-role</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.name>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.clientId>web-reactive-frontend-system</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.clientId>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isMultivalued>true</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isMultivalued>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.tokenClaimName>client.role</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.tokenClaimName>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.claimJSONType>String</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.claimJSONType>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isAddedToIDToken>true</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isAddedToIDToken>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isAddedToAccessToken>true</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isAddedToAccessToken>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isAddedToUserInfo>true</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isAddedToUserInfo>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isAddedToLightweightAccessToken>false</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isAddedToLightweightAccessToken>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isAddedToTokenIntrospection>true</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isAddedToTokenIntrospection>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.mapperTypeReferenceName>oidc-usermodel-client-role-mapper</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.mapperTypeReferenceName>
 
 
 			</properties>

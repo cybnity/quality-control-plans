@@ -280,9 +280,20 @@
 				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isAddedToUserInfo>true</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isAddedToUserInfo>
 				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isAddedToLightweightAccessToken>false</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isAddedToLightweightAccessToken>
 				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isAddedToTokenIntrospection>true</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.isAddedToTokenIntrospection>
+				<!-- https://www.keycloak.org/admin-api/protocol-mappers#oidc-usermodel-client-role-mapper -->
 				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.mapperTypeReferenceName>oidc-usermodel-client-role-mapper</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.1.mapperTypeReferenceName>
-
-
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.name>ui-realm-role</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.name>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.clientId>web-reactive-frontend-system</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.clientId>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.isMultivalued>true</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.isMultivalued>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.tokenClaimName>realm.role</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.tokenClaimName>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.claimJSONType>String</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.claimJSONType>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.isAddedToIDToken>true</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.isAddedToIDToken>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.isAddedToAccessToken>true</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.isAddedToAccessToken>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.isAddedToUserInfo>true</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.isAddedToUserInfo>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.isAddedToLightweightAccessToken>false</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.isAddedToLightweightAccessToken>
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.isAddedToTokenIntrospection>true</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.isAddedToTokenIntrospection>
+				<!-- https://www.keycloak.org/admin-api/protocol-mappers#oidc-usermodel-realm-role-mapper -->
+				<testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.mapperTypeReferenceName>oidc-usermodel-realm-role-mapper</testplan.keycloak.adapter.config.default.realm.clientscope.1.mapper.2.mapperTypeReferenceName>
 			</properties>
 		</profile>
 

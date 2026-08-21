@@ -239,13 +239,13 @@
 				<testplan.keycloak.adapter.config.default.realm.iseventsenabled>true</testplan.keycloak.adapter.config.default.realm.iseventsenabled>
 				<testplan.keycloak.adapter.config.default.realm.isorganizationenabled>true</testplan.keycloak.adapter.config.default.realm.isorganizationenabled>
 				<testplan.keycloak.adapter.config.default.realm.isadminpermissionsmgtenabled>true</testplan.keycloak.adapter.config.default.realm.isadminpermissionsmgtenabled>
-				<testplan.keycloak.adapter.config.default.realm.frontend.url>https://dev-deploy.cybnity.tech/auth/</testplan.keycloak.adapter.config.default.realm.frontend.url>
+				<testplan.keycloak.adapter.config.default.realm.frontend.url></testplan.keycloak.adapter.config.default.realm.frontend.url>
 				<testplan.keycloak.adapter.config.default.realm.security.header.xframe.options>SAMEORIGIN</testplan.keycloak.adapter.config.default.realm.security.header.xframe.options>
 				<testplan.keycloak.adapter.config.default.realm.security.header.content.security.policy>frame-src \'self\'\; frame-ancestors \'self\'\; object-src \'none\'\;</testplan.keycloak.adapter.config.default.realm.security.header.content.security.policy>
 				<testplan.keycloak.adapter.config.default.realm.client.1.clientid>web-reactive-frontend-system</testplan.keycloak.adapter.config.default.realm.client.1.clientid>
 				<testplan.keycloak.adapter.config.default.realm.client.1.name>Web Reactive Frontend Client</testplan.keycloak.adapter.config.default.realm.client.1.name>
 				<testplan.keycloak.adapter.config.default.realm.client.1.description>OpenID client supporting the user interface frontend systems</testplan.keycloak.adapter.config.default.realm.client.1.description>
-				<testplan.keycloak.adapter.config.default.realm.client.1.isalwaysdisplayinconsole>true</testplan.keycloak.adapter.config.default.realm.client.1.isalwaysdisplayinconsole>
+				<testplan.keycloak.adapter.config.default.realm.client.1.isalwaysdisplayinconsole>false</testplan.keycloak.adapter.config.default.realm.client.1.isalwaysdisplayinconsole>
 				<testplan.keycloak.adapter.config.default.realm.client.1.isauthorizationservicesenabled>false</testplan.keycloak.adapter.config.default.realm.client.1.isauthorizationservicesenabled>
 				<testplan.keycloak.adapter.config.default.realm.client.1.isclientauthenticationenabled>false</testplan.keycloak.adapter.config.default.realm.client.1.isclientauthenticationenabled>
 				<testplan.keycloak.adapter.config.default.realm.client.1.isstandardauthenticationflow>true</testplan.keycloak.adapter.config.default.realm.client.1.isstandardauthenticationflow>

@@ -107,6 +107,10 @@ public class CreateRealmSteps extends ContextualizedTest {
 
     @Then("keycloak SSO system confirm the realm success creation")
     public void keycloakSSOSystemConfirmTheTenantSuccessCreation() {
+        // When debug break point is add here to make manual control over the Keycloak web console
+        // accessible from web browser:
+        // - keycloak admin page via http://ip-address/admin/
+        // - when manual created user (from admin page): user login page access via http://ip-address/realms/<<tenant-name>>/account
         Assert.assertNotNull(successTestData_createdTenant);
     }
 

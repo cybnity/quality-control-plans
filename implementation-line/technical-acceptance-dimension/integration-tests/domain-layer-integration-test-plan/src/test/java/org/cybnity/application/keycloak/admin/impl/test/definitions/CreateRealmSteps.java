@@ -102,7 +102,7 @@ public class CreateRealmSteps extends ContextualizedTest {
         // Feed test data cache
         testTenantsCache.add(tenantName);
         // Create a Realm into Keycloak, automatically translated into TenantDTO by API adapter
-        successTestData_createdTenant = this.adapter.createTenant(tenantName);
+        successTestData_createdTenant = this.adapter.createTenant(tenantName, tenantName + " " /* Tested supported blank space by display label */ + "reserved domain for domain layer integration test plan");
     }
 
     @Then("keycloak SSO system confirm the realm success creation")
@@ -145,12 +145,12 @@ public class CreateRealmSteps extends ContextualizedTest {
 
         // Check realm general settings have been defined
         Map<String, String> generalSettings = createdOriginRealm.getAttributes();
-        Assert.assertNotNull(generalSettings.get(RealmWithDefaultExtendedResourcesBuilder.FRONTEND_URL), msg);
+        Assert.assertNotNull(generalSettings.get(RealmWithDefaultExtendedResourcesBuilder.ATTR_FRONTEND_URL), msg);
 
         // Check browser security headers have been defined
         Map<String, String> browserSecurityHeaders = createdOriginRealm.getBrowserSecurityHeaders();
-        Assert.assertNotNull(browserSecurityHeaders.get(RealmWithDefaultExtendedResourcesBuilder.X_FRAME_OPTIONS), msg);
-        Assert.assertNotNull(browserSecurityHeaders.get(RealmWithDefaultExtendedResourcesBuilder.CONTENT_SECURITY_POLICY), msg);
+        Assert.assertNotNull(browserSecurityHeaders.get(RealmWithDefaultExtendedResourcesBuilder.ATTR_X_FRAME_OPTIONS), msg);
+        Assert.assertNotNull(browserSecurityHeaders.get(RealmWithDefaultExtendedResourcesBuilder.ATTR_CONTENT_SECURITY_POLICY), msg);
 
         // Check that default clients have been created for Realm
         List<ClientRepresentation> defaultClients = realm.clients().findAll();
@@ -170,7 +170,7 @@ public class CreateRealmSteps extends ContextualizedTest {
         testTenantsCache.add(existingTenantName); // Feed test data cache
         invalidTenantLabelCreationAttemptResult = false; // Re-init
         // Add test tenant data as existing initial state into Keycloak
-        this.adapter.createTenant(existingTenantName);
+        this.adapter.createTenant(existingTenantName, existingTenantName.toLowerCase());
     }
 
     @When("the user request creation of a tenant with name equals to {string}")
@@ -179,7 +179,7 @@ public class CreateRealmSteps extends ContextualizedTest {
         testTenantsCache.add(tenantName);
         // Attempt creation of a new tenant with same name as previous existing in Keycloak
         try {
-            this.adapter.createTenant(tenantName);
+            this.adapter.createTenant(tenantName, tenantName.toLowerCase());
             invalidTenantLabelCreationAttemptResult = false;
             assert false; // Invalid performed operation that should have been rejected for cause of duplicate realm (with same name already existing)
         } catch (OperationException op) {
